@@ -1070,32 +1070,50 @@ const offloadSun: OffloadWindow[] = [
 
       <!-- ── Key Equipment ───────────────────────── -->
       <div>
-        <p class="text-xs font-semibold uppercase tracking-wider text-furdu-muted mb-3">Key Equipment</p>
+        <p class="text-xs font-semibold uppercase tracking-wider text-furdu-muted mb-3">Key Equipment (FurDU-Supplied)</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {([
             {
               term: 'Flycam Flowline (Stabiliser)',
-              def: 'Jarrod\'s electromechanical gimbal stabiliser (5–12 kg capacity). Used for all moving/tracking video — Fursuit Walk, Floor Wars, DJ roam shots. Must be balanced at the start of each shoot day.',
+              def: 'FurDU-supplied electromechanical gimbal stabiliser (5–12 kg capacity). Used for all moving/tracking video — Fursuit Walk, Floor Wars, DJ roam shots. Must be balanced at the start of each shoot day.',
             },
             {
               term: 'PRO-Reader',
-              def: 'SanDisk PRO-Reader at the ConOps workstation. The primary card reader for all on-site offloads. Use your own personal reader only as a ConOps fallback.',
+              def: 'SanDisk PRO-Reader at the ConOps workstation (FurDU-supplied). The primary card reader for all on-site offloads. Use your own personal reader only as a ConOps fallback.',
             },
             {
               term: 'Atomos Shinobi II',
-              def: "Jarrod's external HDMI monitor (via SmallRig cage + Micro HDMI). Provides calibrated live exposure confirmation and critical framing on key video events. Charge nightly.",
+              def: "FurDU-supplied external HDMI monitor (via SmallRig cage + Micro HDMI). Provides calibrated live exposure confirmation and critical framing on key video events. Powered by USB-C Power Delivery.",
             },
             {
-              term: 'Godox V1 Pro',
-              def: "Neon's TTL round-head flash. Primary flash for panels, meetups, and the Costume Competition — always used with the included diffuser dome for softer light.",
-            },
-            {
-              term: 'Aputure MC',
-              def: "Neon's compact RGB LED constant light. Used as fill light for close-up costume portraits and detail shots, or as a practical lighting accent in darker venues.",
+              term: 'NEEWER 74\" Pro Video Tripod',
+              def: "FurDU-supplied tripod with smooth pan/tilt capability. Primary tripod for locked-off and dynamic shooting on ceremony recordings, panels, and talent show.",
             },
             {
               term: 'RØDE VideoMic ProPlus',
-              def: "Jarrod's directional on-camera microphone. Primary audio source for all video. Engage high-pass filter in indoor and outdoor environments. Charge nightly.",
+              def: "FurDU-supplied directional on-camera microphone. Primary audio source for all video work. Engage high-pass filter in indoor and outdoor environments. Charge nightly.",
+            },
+          ] as { term: string; def: string }[]).map(g => (
+            <div class="card-raised rounded-lg p-3">
+              <p class="font-semibold text-white text-sm mb-1">{g.term}</p>
+              <p class="text-xs text-furdu-muted leading-relaxed">{g.def}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Personal Equipment ─────────────────── -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-furdu-muted mb-3">Key Personal Equipment</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {([
+            {
+              term: 'Godox V1 Pro',
+              def: "Neon's personal TTL round-head flash. Primary flash for panels, meetups, and the Costume Competition — always used with the included diffuser dome for softer light.",
+            },
+            {
+              term: 'Aputure MC',
+              def: "Neon's personal compact RGB LED constant light. Used as fill light for close-up costume portraits and detail shots, or as a practical lighting accent in darker venues.",
             },
           ] as { term: string; def: string }[]).map(g => (
             <div class="card-raised rounded-lg p-3">
