@@ -4,7 +4,7 @@ import Layout from '@/layouts/Layout.astro';
 const teamMembers = [
   {
     name: 'Neon',
-    role: 'Shooter — Photography',
+    role: 'Photography',
     location: 'On-site (AEST, UTC+10)',
     capability: 'Stills only',
     camera: 'Canon EOS R6 Mark II',
@@ -13,7 +13,7 @@ const teamMembers = [
   },
   {
     name: 'Jarrod',
-    role: 'Shooter — Photo + Video',
+    role: 'Photo + Video',
     location: 'On-site (AEST, UTC+10)',
     capability: 'Stills and video',
     camera: 'Sony A7S III',
@@ -22,7 +22,7 @@ const teamMembers = [
   },
   {
     name: 'Reo',
-    role: 'Media Team Lead — Remote',
+    role: 'Media Team Lead',
     location: 'Philippines (PHT, UTC+8)',
     capability: 'Culling, editing, publishing',
     camera: 'Photo Mechanic + Lightroom',
@@ -52,7 +52,7 @@ const pages = [
 ---
 <Layout title="Home">
   <!-- ── HERO ──────────────────────────────────────────────────────────── -->
-  <section class="relative py-12 sm:py-16 text-center overflow-hidden">
+  <section class="relative py-12 sm:py-16 px-4 text-center overflow-hidden">
     <!-- Decorative glows -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-64
@@ -110,6 +110,8 @@ const pages = [
       </div>
     </div>
   </section>
+
+  <div class="max-w-[80vw] mx-auto px-4 pb-8">
 
   <!-- ── MEDIA TEAM ────────────────────────────────────────────────────── -->
   <section class="mb-10">
@@ -220,4 +222,5 @@ const pages = [
       ))}
     </div>
   </section>
+  </div>
 </Layout>

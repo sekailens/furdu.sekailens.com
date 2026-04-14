@@ -34,7 +34,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
     class="sticky top-0 z-50 bg-furdu-bg/90 border-b border-furdu-border backdrop-blur-md"
     x-data="{ open: false }"
   >
-    <nav class="max-w-[75vw] mx-auto px-4 h-14 flex items-center justify-between">
+    <nav class="max-w-[80vw] mx-auto px-4 h-14 flex items-center justify-between">
 
       <!-- Logo / wordmark -->
       <a href="/" class="flex items-center gap-2 group">
@@ -102,7 +102,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
       class="md:hidden border-t border-furdu-border bg-furdu-bg"
       @click.outside="open = false"
     >
-      <ul class="max-w-[75vw] mx-auto px-4 py-2 flex flex-col gap-1">
+      <ul class="max-w-[80vw] mx-auto px-4 py-2 flex flex-col gap-1">
         {nav.map(item => {
           const isActive = item.href === '/'
             ? current === '/'
@@ -128,13 +128,13 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
   </header>
 
   <!-- ── PAGE CONTENT ──────────────────────────────────────────────────── -->
-  <main class="flex-1 w-full max-w-[75vw] mx-auto px-4 py-8">
+  <main class="flex-1 w-full">
     <slot />
   </main>
 
   <!-- ── FOOTER ────────────────────────────────────────────────────────── -->
   <footer class="border-t border-furdu-border bg-furdu-surface mt-auto">
-    <div class="max-w-[75vw] mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-furdu-muted">
+    <div class="max-w-[80vw] mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-furdu-muted">
       <div class="flex items-center gap-2">
         <span class="text-furdu-teal">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"

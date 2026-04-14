@@ -26,6 +26,7 @@ const day3Lanes = Object.fromEntries(
 
 ---
 <Layout title="Schedule">
+  <div class="max-w-[80vw] mx-auto px-4 py-8">
 
   <!-- ── PAGE HEADER ──────────────────────────────────────────────────── -->
   <div class="mb-6">
@@ -76,10 +77,10 @@ const day3Lanes = Object.fromEntries(
         Height is driven by the --hour-px CSS var so zoom works without JS layout updates.
       -->
 
-      <!-- Scrollable timeline body — column header lives inside for sticky-within-scroll behaviour -->
-      <div class="overflow-y-auto" style="max-height: 70vh; min-height: 200px" id="gantt-body">
+      <!-- Timeline body — column header lives inside for sticky-within-viewport behaviour -->
+      <div id="gantt-body">
 
-        <!-- Sticky column-header row (top-0 sticks within gantt-body, not the page) -->
+        <!-- Sticky column-header row (sticks to viewport top) -->
         <div class="grid grid-cols-[72px_1fr_1fr] sticky top-0 z-30 border-b border-furdu-border bg-furdu-raised">
           <div class="px-2 py-3 border-r border-furdu-border flex items-end pb-3">
             <span class="text-xs text-furdu-muted/60 font-semibold uppercase tracking-wider">Time</span>
@@ -141,6 +142,8 @@ const day3Lanes = Object.fromEntries(
 
   </div>
   <!-- /gantt-root -->
+
+  </div>
 
 </Layout>
 

@@ -5,7 +5,7 @@ import Layout from '@/layouts/Layout.astro';
 interface GearItem  { lens:  string; use: string; }
 interface LightItem { light: string; use: string; }
 interface OffloadWindow {
-  offload: string; time: string; pht: string; breakPoint: string; notes: string;
+  offload: string; neon: string; jarrod: string; breakPoint: string; notes: string;
 }
 
 // ── Gear Data ─────────────────────────────────────────────────────────────
@@ -44,26 +44,30 @@ const jarrodSupplied = [
 
 // ── Offload Windows ───────────────────────────────────────────────────────
 const offloadFri: OffloadWindow[] = [
-  { offload: '1', time: '12:30–12:45 PM', pht: '10:30–10:45 AM', breakPoint: 'Lunch after Dealers Den / morning coverage', notes: 'Neon 12:30 PM, Jarrod 12:45 PM. High priority — 2.5 hrs of morning footage.' },
-  { offload: '2', time: '4:30–4:45 PM',   pht: '2:30–2:45 PM',   breakPoint: 'After Dance Competition ends (4:30 PM)', notes: 'Neon 4:30 PM, Jarrod 4:45 PM. Priority — transfer all footage before Opening Words at 5 PM.' },
-  { offload: '3', time: '6:15–6:30 PM',   pht: '4:15–4:30 PM',   breakPoint: 'After Opening Words ends (6 PM)', notes: 'Neon 6:15 PM, Jarrod 6:30 PM. Priority — ceremony footage on cards.' },
-  { offload: '4', time: '9:15–9:30 PM',   pht: '7:15–7:30 PM',   breakPoint: 'DJ transition — Pup Riff → Salty (9 PM)', notes: 'Jarrod offloads first 9:15 PM while Neon holds photo solo; Neon offloads 9:30 PM.' },
+  { offload: '1',        neon: '12:30–12:45 PM', jarrod: '12:45–1:00 PM',  breakPoint: 'Lunch after Dealers Den / morning coverage',      notes: 'High priority — 2.5 hrs of morning footage.' },
+  { offload: '2',        neon: '4:30–4:45 PM',   jarrod: '4:45–5:00 PM',   breakPoint: 'After Dance Competition ends (4:30 PM)',           notes: 'Priority — transfer all footage before Opening Words at 5 PM.' },
+  { offload: '3',        neon: '6:15–6:35 PM',   jarrod: '6:30–6:50 PM',   breakPoint: 'After Opening Words ends (6 PM)',                  notes: 'Priority — overlapping stagger; ceremony footage on cards.' },
+  { offload: '4',        neon: '9:30–9:45 PM',   jarrod: '9:15–9:30 PM',   breakPoint: 'DJ transition — Pup Riff → Salty (9 PM)',         notes: 'Jarrod goes first; Neon holds photo solo until 9:30.' },
+  { offload: '5 (wrap)', neon: '11:30–11:50 PM', jarrod: '12:00–12:20 AM', breakPoint: 'After Diesel set — end of night',                  notes: 'Neon wraps for the night; Jarrod continues closing video solo.' },
 ];
 const offloadSat: OffloadWindow[] = [
-  { offload: '1', time: '12:45 PM – 1:00 PM', pht: '10:45–11:00 AM', breakPoint: 'Post-Fursuit Walk lunch break', notes: 'Neon 12:45 PM, Jarrod 1:00 PM. Critical — Fursuit Walk generates highest file volume of the con.' },
-  { offload: '2', time: '5:00–5:15 PM',        pht: '3:00–3:15 PM',   breakPoint: 'After From Garment to Fursuit ends (5 PM)', notes: 'Neon 5:00 PM, Jarrod 5:15 PM. Priority — must offload before Talent Show at 5:30 PM.' },
-  { offload: '3', time: '7:00–7:15 PM',        pht: '5:00–5:15 PM',   breakPoint: 'After Talent Show ends (7 PM)', notes: 'Neon 7:00 PM, Jarrod 7:15 PM. Natural gap before DJ Sets at 8 PM.' },
-  { offload: '4', time: '9:15–9:30 PM',        pht: '7:15–7:30 PM',   breakPoint: 'DJ Sets — Peachy transition (9 PM)', notes: 'Jarrod offloads first 9:15 PM while Neon holds photo solo; Neon offloads 9:30 PM.' },
+  { offload: '1',        neon: '12:45–1:00 PM',  jarrod: '1:00–1:15 PM',   breakPoint: 'Post-Fursuit Walk lunch break',                    notes: 'Critical — Fursuit Walk generates highest file volume of the con.' },
+  { offload: '2',        neon: '5:00–5:15 PM',   jarrod: '5:15–5:30 PM',   breakPoint: 'After From Garment to Fursuit ends (5 PM)',        notes: 'Priority — must offload before Talent Show at 5:30 PM.' },
+  { offload: '3',        neon: '7:00–7:15 PM',   jarrod: '7:15–7:30 PM',   breakPoint: 'After Talent Show ends (7 PM)',                    notes: 'Natural gap before DJ Sets at 8 PM.' },
+  { offload: '4',        neon: '9:30–9:45 PM',   jarrod: '9:15–9:30 PM',   breakPoint: 'DJ transition — Peachy (9 PM)',                    notes: 'Jarrod goes first; Neon holds photo solo until 9:30.' },
+  { offload: '5 (wrap)', neon: '11:30–11:50 PM', jarrod: '12:00–12:20 AM', breakPoint: 'End of night — wrap',                             notes: 'Both transfer all remaining cards to Nextcloud.' },
 ];
 const offloadSun: OffloadWindow[] = [
-  { offload: '1', time: '12:45 PM – 1:00 PM', pht: '10:45–11:00 AM', breakPoint: 'Post-Fursuit Games lunch break', notes: 'Both 12:45 PM simultaneously. Priority — Floor Wars starts at 1 PM, both must be done by then.' },
-  { offload: '2', time: '4:00–4:15 PM',        pht: '2:00–2:15 PM',   breakPoint: 'Pre-Closing Ceremony offload window', notes: 'Jarrod 4:00 PM, Neon 4:15 PM. Critical — must be done before Closing Ceremony at 5 PM.' },
-  { offload: '3', time: '7:15–7:30 PM',        pht: '5:15–5:30 PM',   breakPoint: 'After Closing Ceremony ends (7 PM)', notes: 'Neon 7:15 PM, Jarrod 7:30 PM. Highest priority of the weekend — ceremony and auction footage.' },
-  { offload: '4', time: '9:15–9:30 PM',        pht: '7:15–7:30 PM',   breakPoint: 'Dead Dog Dance — BeatSpark transition (9 PM)', notes: 'Jarrod offloads first 9:15 PM while Neon holds photo solo; Neon offloads 9:30 PM.' },
+  { offload: '1',        neon: '12:45–1:00 PM',  jarrod: '12:45–1:00 PM',  breakPoint: 'Post-Fursuit Games lunch break',                   notes: 'Both simultaneously. Floor Wars starts at 1 PM — must be done by then.' },
+  { offload: '2',        neon: '4:15–4:30 PM',   jarrod: '4:00–4:15 PM',   breakPoint: 'Pre-Closing Ceremony window',                      notes: 'Jarrod goes first; both must be done before Closing Ceremony at 5 PM.' },
+  { offload: '3',        neon: '7:15–7:30 PM',   jarrod: '7:30–7:45 PM',   breakPoint: 'After Closing Ceremony ends (7 PM)',               notes: 'Highest priority of the weekend — ceremony and auction footage.' },
+  { offload: '4',        neon: '9:30–9:45 PM',   jarrod: '9:15–9:30 PM',   breakPoint: 'Dead Dog Dance — BeatSpark transition (9 PM)',     notes: 'Jarrod goes first; Neon holds photo solo until 9:30.' },
+  { offload: '5 (wrap)', neon: '11:30–11:50 PM', jarrod: '12:00–12:20 AM', breakPoint: 'Convention wrap',                                  notes: 'Final offload of FurDU 2026. FurDU-issued cards returned to ConOps.' },
 ];
 
 ---
 <Layout title="Media Guide">
+  <div class="max-w-[80vw] mx-auto px-4 py-8">
 
   <!-- ── PAGE HEADER ──────────────────────────────────────────────────── -->
   <div class="mb-8">
@@ -109,11 +113,11 @@ const offloadSun: OffloadWindow[] = [
   </div>
   <!-- ── TABLE OF CONTENTS ──────────────────────────────────────────── -->
   <nav
-    class="card p-4 mb-8 sticky top-16 z-20"
+    class="p-4 mb-8 sticky top-16 z-20 rounded-xl border border-furdu-teal/50 bg-gradient-to-br from-slate-950/80 to-slate-900/60 backdrop-blur-sm"
     aria-label="Table of contents"
     x-data="{
       active: 'team',
-      sections: ['team','onboarding','gear','offload-schedule','offload-workflow','server','deliverables'],
+      sections: ['team','onboarding','gear','offload-schedule','offload-workflow','server','deliverables','glossary'],
       init() {
         const obs = new IntersectionObserver(entries => {
           entries.forEach(e => { if (e.isIntersecting) this.active = e.target.id; });
@@ -132,6 +136,7 @@ const offloadSun: OffloadWindow[] = [
         { href: '#offload-workflow', label: 'Offload Workflow', n: '5' },
         { href: '#server',           label: 'Server Structure', n: '6' },
         { href: '#deliverables',     label: 'Deliverables',     n: '7' },
+        { href: '#glossary',         label: 'Glossary',         n: '8' },
       ]).map(l => (
         <li>
           <a
@@ -169,19 +174,19 @@ const offloadSun: OffloadWindow[] = [
         <tbody>
           <tr>
             <td class="font-semibold text-white">Neon</td>
-            <td>Shooter — Photography</td>
+            <td>Photography</td>
             <td class="text-furdu-muted whitespace-nowrap">On-site (AEST, UTC+10)</td>
             <td><span class="badge-teal">Stills only</span></td>
           </tr>
           <tr>
             <td class="font-semibold text-white">Jarrod</td>
-            <td>Shooter — Photo + Video</td>
+            <td>Photo + Video</td>
             <td class="text-furdu-muted whitespace-nowrap">On-site (AEST, UTC+10)</td>
             <td><span class="badge-violet">Stills and video</span></td>
           </tr>
           <tr>
             <td class="font-semibold text-white">Reo</td>
-            <td>Media Team Lead — Remote</td>
+            <td>Media Team Lead</td>
             <td class="text-furdu-muted whitespace-nowrap">Philippines (PHT, UTC+8 · AEST −2h)</td>
             <td><span class="badge-orange">Culling, editing, publishing</span></td>
           </tr>
@@ -255,6 +260,10 @@ const offloadSun: OffloadWindow[] = [
         <div class="space-y-1">
           <p class="font-semibold text-white">Join the ConOps network before the convention opens</p>
           <p class="text-sm text-furdu-muted">When you collect your badge from ConOps, also request the <strong class="text-white">ConOps Wi-Fi credentials</strong> (or ask about a wired ethernet drop at your offload station). Connect your laptop to the ConOps network and confirm Nextcloud syncs before Day 1 shooting starts. The venue public Wi-Fi is unreliable for large file transfers — ConOps network access ensures your offloads go through cleanly.</p>
+          <div class="mt-2 flex items-start gap-2 rounded-lg bg-orange-950/40 border border-orange-700/40 px-3 py-2 text-sm text-orange-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="shrink-0 mt-0.5"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span><strong class="text-orange-200">Do not share the ConOps Wi-Fi credentials with anyone.</strong> The ConOps network is shared by all staff — media file transfers alone use significant bandwidth. Every extra device on the network degrades transfer speeds for the whole team and risks missing an offload window.</span>
+          </div>
         </div>
       </div>
 
@@ -263,7 +272,7 @@ const offloadSun: OffloadWindow[] = [
         <div class="shrink-0 w-8 h-8 rounded-full bg-furdu-teal/20 border border-furdu-teal/40 flex items-center justify-center text-furdu-teal font-bold text-sm">6</div>
         <div class="space-y-1">
           <p class="font-semibold text-white">Prepare your offload setup</p>
-          <p class="text-sm text-furdu-muted">Before the first shoot day: label all your cards clearly (<code class="bg-furdu-bg px-1 rounded text-furdu-teal text-xs">NEON-A</code> / <code class="bg-furdu-bg px-1 rounded text-furdu-teal text-xs">NEON-B</code> or <code class="bg-furdu-bg px-1 rounded text-furdu-teal text-xs">JARROD-A</code> / <code class="bg-furdu-bg px-1 rounded text-furdu-teal text-xs">JARROD-B</code>). Collect FurDU-issued cards from ConOps at the start of each day. Confirm your card reader is charged and accessible. Know your offload windows from the <a href="#offload-schedule" class="text-furdu-teal hover:underline">Offload Schedule</a> below.</p>
+          <p class="text-sm text-furdu-muted">Before the first shoot day: label all your cards clearly (<code class="bg-furdu-bg px-1 rounded text-furdu-teal text-xs">NEON-A</code> / <code class="bg-furdu-bg px-1 rounded text-furdu-teal text-xs">NEON-B</code> or <code class="bg-furdu-bg px-1 rounded text-furdu-teal text-xs">JARROD-A</code> / <code class="bg-furdu-bg px-1 rounded text-furdu-teal text-xs">JARROD-B</code>). Collect FurDU-issued cards from ConOps at the start of the con. Confirm your card reader is accessible. Know your offload windows from the <a href="#offload-schedule" class="text-furdu-teal hover:underline">Offload Schedule</a> below.</p>
         </div>
       </div>
 
@@ -483,15 +492,15 @@ const offloadSun: OffloadWindow[] = [
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>#</th><th>Time (AEST)</th><th>PHT Equiv.</th><th>Natural Break</th><th>Notes</th>
+                  <th>#</th><th>Neon (AEST)</th><th>Jarrod (AEST)</th><th>Natural Break</th><th>Notes</th>
                 </tr>
               </thead>
               <tbody>
                 {windows.map(w => (
                   <tr>
-                    <td class="text-furdu-teal font-bold">{w.offload}</td>
-                    <td class="font-semibold text-white whitespace-nowrap">{w.time}</td>
-                    <td class="text-furdu-muted whitespace-nowrap">{w.pht}</td>
+                    <td class="text-furdu-teal font-bold whitespace-nowrap">{w.offload}</td>
+                    <td class="font-semibold text-white whitespace-nowrap">{w.neon}</td>
+                    <td class="font-semibold text-violet-300 whitespace-nowrap">{w.jarrod}</td>
                     <td class="text-furdu-muted text-sm">{w.breakPoint}</td>
                     <td class="text-furdu-muted text-sm">{w.notes}</td>
                   </tr>
@@ -853,7 +862,7 @@ const offloadSun: OffloadWindow[] = [
     </div>
 
     <!-- Shot targets table -->
-    <div class="table-auto-scroll rounded-xl overflow-hidden border border-furdu-border">
+    <div class="rounded-xl overflow-x-auto border border-furdu-border">
       <table class="data-table">
         <thead>
           <tr><th>Event / Category</th><th>Neon — Photo</th><th>Jarrod — Stills</th><th>Jarrod — Video</th></tr>
@@ -873,19 +882,272 @@ const offloadSun: OffloadWindow[] = [
             { type: 'Registration / pre-event assembly candids (per day)', neon: '45–60', jarrod: '30–45', video: '~6 min assembly B-roll' },
             { type: 'Vertical social clips (per major event, Jarrod)', neon: '—', jarrod: '—', video: '1–2 clips × 15–60 sec, 9:16 portrait orientation' },
             { type: '⭐ Overall con total — Neon', neon: '~2,300–3,600 RAW files', jarrod: '—', video: '—' },
-            { type: '⭐ Overall con total — Jarrod', neon: '—', jarrod: '~700–1,200 RAW stills (pass events + Pub Trivia only)', video: '~12–18 hrs raw footage' },
+            { type: '⭐ Overall con total — Jarrod', neon: '—', jarrod: '~700–1,200 RAW stills', video: '~12–18 hrs raw footage' },
           ] as { type: string; neon: string; jarrod: string; video: string }[]).map(r => (
             <tr>
               <td class={r.type.startsWith('⭐') ? 'font-semibold text-white text-sm' : 'text-furdu-muted text-sm'}>{r.type.replace('⭐ ', '')}</td>
-              <td class="font-semibold text-white text-sm whitespace-nowrap">{r.neon}</td>
-              <td class="text-furdu-muted text-sm whitespace-nowrap">{r.jarrod}</td>
-              <td class="text-furdu-muted text-sm whitespace-nowrap">{r.video}</td>
+              <td class="font-semibold text-white text-sm">{r.neon}</td>
+              <td class="text-furdu-muted text-sm">{r.jarrod}</td>
+              <td class="text-furdu-muted text-sm">{r.video}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   </section>
+
+  <!-- ── GLOSSARY ──────────────────────────────────────────────────────── -->
+  <section class="mb-8" id="glossary">
+    <h2 class="section-title">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" class="text-furdu-teal" viewBox="0 0 24 24">
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+      </svg>
+      Glossary
+    </h2>
+
+    <div class="space-y-6">
+
+      <!-- ── Workflow & Event Terms ─────────────── -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-furdu-muted mb-3">Workflow &amp; Event Terms</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {([
+            {
+              term: 'Pass',
+              def: 'A short, time-boxed visit to a non-primary event (typically 15–30 min). The shooter drops in, captures key frames, then moves on — full-event coverage is not required.',
+            },
+            {
+              term: 'Primary event (⭐)',
+              def: 'A high-priority event requiring continuous full coverage for its entire duration. At least one shooter must be present from start to finish, no exceptions.',
+            },
+            {
+              term: 'Assigned event',
+              def: 'A coverage target in your schedule — not a mandatory full-duration commitment. Shoot until you meet the quota, capture highlights, and have a good set of shots. Once satisfied, you can roam and explore the con until your next assignment. Just be back on location before the next scheduled block.',
+            },
+            {
+              term: 'Solo window',
+              def: 'A scheduled block where only one photographer covers an event — because the other is offloading, on a pass, or on break.',
+            },
+            {
+              term: 'Offload window',
+              def: 'A scheduled gap in programming where one or both shooters head to ConOps to transfer files from their active card to the server.',
+            },
+            {
+              term: 'Staggered offload',
+              def: 'Jarrod offloads first at a DJ transition or event gap, then Neon offloads 15 min later — ensuring at least one shooter stays on the floor at all times.',
+            },
+            {
+              term: 'Wrap offload',
+              def: 'The final end-of-night offload after the last shooting block. All remaining cards are transferred before both shooters finish for the day.',
+            },
+            {
+              term: 'Card rotation',
+              def: 'The two-card system: one card is active in-camera, one is in-pocket as the swap. At each offload window, swap cards so the camera is ready immediately while the full card is offloaded.',
+            },
+            {
+              term: 'Culling',
+              def: "Post-shoot selection process: unusable, blurry, duplicate, or otherwise reject shots are flagged and removed before editing begins. Reo's task — do not pre-cull before uploading.",
+            },
+          ] as { term: string; def: string }[]).map(g => (
+            <div class="card-raised rounded-lg p-3">
+              <p class="font-semibold text-white text-sm mb-1">{g.term}</p>
+              <p class="text-xs text-furdu-muted leading-relaxed">{g.def}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Shot & Coverage Types ──────────────── -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-furdu-muted mb-3">Shot &amp; Coverage Types</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {([
+            {
+              term: 'F+B',
+              def: 'Front and Back — the standard full-costume documentation shot at the Costume Competition. One frame from directly in front and one from directly behind, showing the full build. Required for every entrant.',
+            },
+            {
+              term: 'A-roll',
+              def: 'Primary footage; the main subject in-frame — speeches, performances, competition routines. Locked-off ceremony records and Flowline competition videos are A-roll.',
+            },
+            {
+              term: 'B-roll',
+              def: "Supplementary footage — crowd reactions, venue atmosphere, behind-the-scenes. Used in editing to cut around A-roll. Most of Jarrod's walkabout video is B-roll.",
+            },
+            {
+              term: 'Locked-off',
+              def: 'A tripod-mounted shot with a fixed frame — no panning, tilting, or movement. Used for full-ceremony records (Opening Words, Closing Ceremony) so the stage is always in frame.',
+            },
+            {
+              term: 'Vertical clip (9:16)',
+              def: 'A portrait-orientation video clip shot by rotating the camera (height > width). Used for social media stories and reels. Jarrod captures 1–2 of these at each major event.',
+            },
+            {
+              term: 'Burst shooting',
+              def: 'Holding the shutter fires multiple frames per second (R6 II: up to 10fps mechanical, 40fps electronic). Used to capture peak action — jump apex, spin peak, winning-moment reveal.',
+            },
+          ] as { term: string; def: string }[]).map(g => (
+            <div class="card-raised rounded-lg p-3">
+              <p class="font-semibold text-white text-sm mb-1">{g.term}</p>
+              <p class="text-xs text-furdu-muted leading-relaxed">{g.def}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Camera Settings & Modes ────────────── -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-furdu-muted mb-3">Camera Settings &amp; Modes</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {([
+            {
+              term: 'Av (Aperture Priority)',
+              def: 'The photographer sets the aperture (f-stop); the camera selects shutter speed automatically. Used for controlled-light environments like panels and meetups.',
+            },
+            {
+              term: 'Tv (Shutter Priority)',
+              def: "The photographer sets the shutter speed; the camera selects the aperture. Used when freezing motion is critical — Dance Competition (1/640s+), Fursuit Walk (1/500s).",
+            },
+            {
+              term: 'M (Manual)',
+              def: 'Full manual mode — the photographer controls aperture, shutter, and ISO independently. Used for flash work (Costume Competition: 1/200s flash sync, ISO 400, f/5.6).',
+            },
+            {
+              term: 'IBIS',
+              def: 'In-Body Image Stabilisation. Hardware in the camera body that compensates for hand-shake, enabling lower shutter speeds without blur. Engage on both cameras during handheld low-light shooting.',
+            },
+            {
+              term: 'TTL',
+              def: 'Through-The-Lens flash metering. The camera measures light through the lens and automatically calculates flash power for correct exposure. Used with the Godox V1 Pro.',
+            },
+            {
+              term: 'Subject tracking / AFCS',
+              def: 'Autofocus Continuous with face/eye subject tracking. The camera locks onto a moving subject and maintains focus automatically — essential for dancers, fursuiters, and crowd candids.',
+            },
+            {
+              term: 'Manual WB',
+              def: 'Manual White Balance. The photographer specifies a fixed colour temperature in Kelvin (e.g. 3200K for warm booth lighting) instead of letting the camera auto-detect it. Ensures consistent colour between passes.',
+            },
+            {
+              term: 'RAW',
+              def: 'An uncompressed or minimally-processed capture format straight from the camera sensor, preserving maximum editing latitude. Upload RAW files to the server exactly as captured — never edit or delete before uploading.',
+            },
+            {
+              term: 'High-pass filter',
+              def: "A microphone setting (on the RØDE VideoMic ProPlus) that rolls off low rumble and bass frequencies — reduces HVAC hum, crowd low-end, and handling noise in indoor and outdoor audio.",
+            },
+          ] as { term: string; def: string }[]).map(g => (
+            <div class="card-raised rounded-lg p-3">
+              <p class="font-semibold text-white text-sm mb-1">{g.term}</p>
+              <p class="text-xs text-furdu-muted leading-relaxed">{g.def}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Camera Profiles ─────────────────────── -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-furdu-muted mb-3">Camera Profiles (Sony A7S III)</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {([
+            {
+              term: 'S-Log3',
+              def: 'A flat, low-contrast Sony log recording profile that captures maximum dynamic range. Footage looks grey and washed-out out of camera — requires colour grading in post. Used for key video events where highlight retention (stage lighting, windows) is critical.',
+            },
+            {
+              term: 'S-Cinetone',
+              def: "A Sony picture profile that applies a natural-looking, film-like colour science in-camera. Ready for use with minimal grading — slightly more contrast than S-Log3 but usable as-is for B-roll and social clips. Jarrod's default for general coverage.",
+            },
+          ] as { term: string; def: string }[]).map(g => (
+            <div class="card-raised rounded-lg p-3">
+              <p class="font-semibold text-white text-sm mb-1">{g.term}</p>
+              <p class="text-xs text-furdu-muted leading-relaxed">{g.def}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Key Equipment ───────────────────────── -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-furdu-muted mb-3">Key Equipment</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {([
+            {
+              term: 'Flycam Flowline (Stabiliser)',
+              def: 'Jarrod\'s electromechanical gimbal stabiliser (5–12 kg capacity). Used for all moving/tracking video — Fursuit Walk, Floor Wars, DJ roam shots. Must be balanced at the start of each shoot day.',
+            },
+            {
+              term: 'PRO-Reader',
+              def: 'SanDisk PRO-Reader at the ConOps workstation. The primary card reader for all on-site offloads. Use your own personal reader only as a ConOps fallback.',
+            },
+            {
+              term: 'Atomos Shinobi II',
+              def: "Jarrod's external HDMI monitor (via SmallRig cage + Micro HDMI). Provides calibrated live exposure confirmation and critical framing on key video events. Charge nightly.",
+            },
+            {
+              term: 'Godox V1 Pro',
+              def: "Neon's TTL round-head flash. Primary flash for panels, meetups, and the Costume Competition — always used with the included diffuser dome for softer light.",
+            },
+            {
+              term: 'Aputure MC',
+              def: "Neon's compact RGB LED constant light. Used as fill light for close-up costume portraits and detail shots, or as a practical lighting accent in darker venues.",
+            },
+            {
+              term: 'RØDE VideoMic ProPlus',
+              def: "Jarrod's directional on-camera microphone. Primary audio source for all video. Engage high-pass filter in indoor and outdoor environments. Charge nightly.",
+            },
+          ] as { term: string; def: string }[]).map(g => (
+            <div class="card-raised rounded-lg p-3">
+              <p class="font-semibold text-white text-sm mb-1">{g.term}</p>
+              <p class="text-xs text-furdu-muted leading-relaxed">{g.def}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Places, Roles & Time ────────────────── -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-furdu-muted mb-3">Places, Roles &amp; Time</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {([
+            {
+              term: 'ConOps',
+              def: 'Convention Operations — the main staff hub room. Hosts the offload workstation (PRO-Reader), approved equipment storage, and the staff-only ConOps Wi-Fi/ethernet access point.',
+            },
+            {
+              term: 'ConOps network',
+              def: "The staff-only Wi-Fi and/or wired ethernet at ConOps. Used for all Nextcloud file transfers. Do not share credentials — extra devices degrade transfer speeds for the whole team.",
+            },
+            {
+              term: 'Nextcloud',
+              def: "The FurDU media team's self-hosted file server. All files transferred at ConOps sync to Nextcloud in near real-time, allowing Reo to begin culling from the Philippines within minutes of an offload.",
+            },
+            {
+              term: 'AEST',
+              def: 'Australian Eastern Standard Time — UTC+10. Brisbane\'s year-round timezone (Queensland does not observe daylight saving). All schedule and guide times are AEST unless otherwise noted.',
+            },
+            {
+              term: 'PHT',
+              def: "Philippine Time — UTC+8 (AEST −2 h). Reo's timezone. When coordinating real-time with Reo, apply the two-hour offset: e.g. 7 PM AEST = 5 PM PHT.",
+            },
+            {
+              term: 'Media badge',
+              def: "The FurDU-issued photo ID that identifies you as accredited media staff. Must be collected from ConOps on Thursday or Friday, worn visibly on your lanyard at all times during the event, and returned to ConOps at the end of the convention.",
+            },
+          ] as { term: string; def: string }[]).map(g => (
+            <div class="card-raised rounded-lg p-3">
+              <p class="font-semibold text-white text-sm mb-1">{g.term}</p>
+              <p class="text-xs text-furdu-muted leading-relaxed">{g.def}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </div>
 
 </Layout>
 

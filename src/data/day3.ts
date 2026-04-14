@@ -121,7 +121,7 @@ export const eventsDay3: GanttEvent[] = [
     {
         id: 'sun-n-03', name: "⭐ Closing Ceremony / Charity Auction",
         ...t('17:00', '19:00'), col: 'neon', type: 'primary', location: "Main Stage",
-        notes: "HIGHEST PRIORITY of the entire convention — sole stills photographer, Jarrod on locked tripod. R6 II: Av f/4, ISO 3200–6400, no flash during speeches, IBIS active. Canon 70-300mm for speaker-at-podium pulls and bid paddle close-ups; Sigma 18-35mm for wide crowd reaction shots. Look for: each board speaker at podium with crowd behind (wide establishing then tighten), charity auction bid-paddle moment in-frame (burst as hands go up), emotional audience close-ups — end-of-year feels run high, charity reveal reaction (burst through moment and hold), final group-energy wide closing frame. Reframe only between segments — do NOT step away.",
+        notes: "HIGHEST PRIORITY of the entire convention — sole stills photographer. R6 II: Av f/4, ISO 3200–6400, no flash during speeches, IBIS active. Canon 70-300mm for speaker-at-podium pulls and bid paddle close-ups; Sigma 18-35mm for wide crowd reaction shots. Look for: each board speaker at podium with crowd behind (wide establishing then tighten), charity auction bid-paddle moment in-frame (burst as hands go up), emotional audience close-ups — end-of-year feels run high, charity reveal reaction (burst through moment and hold), final group-energy wide closing frame. Reframe only between segments — do NOT step away.",
         quota: [{ label: 'Min. Photos', value: '200–280' }, { label: 'Note', value: 'Sole stills photographer — Jarrod on tripod full video' }, { label: 'Shots', value: 'Speakers, auction bids, crowd reactions, charity reveal, closing moments' }, { label: 'Recommended Gear', value: 'Canon 70-300mm + Sigma 18-35mm f/1.8 + Godox V1 Pro' }]
     },
 
@@ -243,7 +243,7 @@ export const eventsDay3: GanttEvent[] = [
     {
         id: 'sun-j-macro', name: "Macro/Micro Meet & Photoshoot (pass)",
         ...t('15:00', '15:15'), col: 'jarrod', type: 'neon', location: "Panel Room 2",
-        notes: "Second pass (Neon was in at 2:35). Confirm consent with host before shooting. A7S III: S-Cinetone, ISO 1600, f/2.8, Tamron 28-75mm, SteadyShot Active. Look for: group candid interaction at 28mm, themed beach-prop detail close-up at 75mm, subgroup focused on a posed moment. 90–180 sec atmosphere clip + 30–45 stills.",
+        notes: "Second pass (Neon was in at 2:45 PM). Confirm consent with host before shooting. A7S III: S-Cinetone, ISO 1600, f/2.8, Tamron 28-75mm, SteadyShot Active. Look for: group candid interaction at 28mm, themed beach-prop detail close-up at 75mm, subgroup focused on a posed moment. 90–180 sec atmosphere clip + 30–45 stills.",
         quota: [{ label: 'Min. Photos', value: '30–45' }, { label: 'Min. Video', value: '90–180 sec atmosphere clip' }, { label: 'Note', value: 'Consent for close-up shots; Neon in position' }]
     },
 
@@ -271,8 +271,8 @@ export const eventsDay3: GanttEvent[] = [
     {
         id: 'sun-j-03', name: "⭐ Closing Ceremony / Charity Auction",
         ...t('17:00', '19:00'), col: 'jarrod', type: 'primary', location: "Main Stage",
-        notes: "HIGHEST PRIORITY of the convention — locked-off tripod, full ceremony, no stills. A7S III: S-Log3, 4K25fps, ISO 800–1600, Tamron ~35mm for stage-width framing. NEEWER 74\" tripod. RØDE VideoMic ProPlus: -20dB pad (stage audio can spike sharply with applause), high-pass on, check levels on Shinobi before doors open. Record continuously through all speakers, auction rounds, and the charity reveal — do not cut between segments. Look for: re-frame before any visual prop or screen reveal appears, maintain headroom on each speaker, monitor Shinobi audio waveform through loud applause peaks.",
-        quota: [{ label: 'Min. Video', value: 'Full ceremony record' }, { label: 'Note', value: 'Video only — locked-off tripod full ceremony. Neon is sole stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + NEEWER 74" Pro Video Tripod + Tamron 28-75mm + Atomos Shinobi II' }]
+        notes: "HIGHEST PRIORITY of the convention — tripod with dynamic framing to follow each speaker through ceremony, no stills. A7S III: S-Log3, 4K25fps, ISO 800–1600, Tamron ~35mm for stage-width framing. NEEWER 74\" tripod with smooth pan/tilt capability. RØDE VideoMic ProPlus: -20dB pad (stage audio can spike sharply with applause), high-pass on, check levels on Shinobi before doors open. Record continuously through all speakers, auction rounds, and the charity reveal — do not cut between segments. Look for: track each speaker smoothly as they move, pan/tilt before any visual prop or screen reveal appears, maintain headroom on each speaker, monitor Shinobi audio waveform through loud applause peaks.",
+        quota: [{ label: 'Min. Video', value: 'Full ceremony record' }, { label: 'Note', value: 'Video only — dynamic tripod following speakers. Neon is sole stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + NEEWER 74" Pro Video Tripod + Tamron 28-75mm + Atomos Shinobi II' }]
     },
 
     {

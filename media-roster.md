@@ -10,9 +10,9 @@
 
 | Member | Role | Location | Capabilities |
 |--------|------|----------|-------------|
-| **Neon** | Shooter — Photography | On-site (AEST, UTC+10) | Stills only |
-| **Jarrod** | Shooter — Photo + Video | On-site (AEST, UTC+10) | Stills and video |
-| **Reo** | Media Team Lead — Remote | Philippines (PHT, UTC+8 · AEST −2 h) | Culling, editing, publishing |
+| **Neon** | Photography | On-site (AEST, UTC+10) | Stills only |
+| **Jarrod** | Photo + Video | On-site (AEST, UTC+10) | Stills and video |
+| **Reo** | Media Team Lead | Philippines (PHT, UTC+8 · AEST −2 h) | Culling, editing, publishing |
 
 ---
 

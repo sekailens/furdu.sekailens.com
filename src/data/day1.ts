@@ -152,8 +152,8 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-n-11', name: "⭐ Opening Words",
         ...t('17:00', '18:00'), col: 'neon', type: 'primary', location: "Main Stage",
-        notes: "HIGHEST PRIORITY — sole stills photographer (Jarrod on locked tripod). R6 II: Av f/4, ISO 3200–6400, no flash during speeches, IBIS active. Canon 70-300mm for individual speaker portraits; Sigma 18-35mm for wide crowd reactions. Look for: each board speaker framed at podium, theme reveal visual moment (burst on the reveal), wide crowd reaction shot, emotional audience close-ups. Burst at each applause break — reframe between speakers only, don't shift position during speech.",
-        quota: [{ label: 'Min. Photos', value: '150–200' }, { label: 'Note', value: 'Sole stills photographer — Jarrod on locked tripod' }, { label: 'Shots', value: 'Speakers, theme reveal, crowd' }, { label: 'Recommended Gear', value: 'Canon 70-300mm + Sigma 18-35mm f/1.8' }]
+        notes: "HIGHEST PRIORITY — sole stills photographer. R6 II: Av f/4, ISO 3200–6400, no flash during speeches, IBIS active. Canon 70-300mm for individual speaker portraits; Sigma 18-35mm for wide crowd reactions. Look for: each board speaker framed at podium, theme reveal visual moment (burst on the reveal), wide crowd reaction shot, emotional audience close-ups. Burst at each applause break — reframe between speakers only, don't shift position during speech.",
+        quota: [{ label: 'Min. Photos', value: '150–200' }, { label: 'Note', value: 'Sole stills photographer' }, { label: 'Shots', value: 'Speakers, theme reveal, crowd' }, { label: 'Recommended Gear', value: 'Canon 70-300mm + Sigma 18-35mm f/1.8' }]
     },
 
     {
@@ -173,7 +173,7 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-n-13', name: "⭐ Fursuit Friendly Dance",
         ...t('19:00', '19:30'), col: 'neon', type: 'primary', location: "Main Stage",
-        notes: "Solo first 30 min (Jarrod at Muscle Fur). R6 II: Tv 1/400s, ISO 3200–12800, f/1.4. Subject tracking in shifting stage light. Look for: fursuiter mid-dance with LED details lit by stage light, crowd participation, handler candids from the floor. Canon 50mm f/1.8 for lightweight low-light carry; Sigma 85mm f/1.4 for fursuit isolation. Spot-meter on subject — stage lighting shifts rapidly.",
+        notes: "Solo first 15 min (Jarrod joins at 7:15 PM after Muscle Fur pass). R6 II: Tv 1/400s, ISO 3200–12800, f/1.4. Subject tracking in shifting stage light. Look for: fursuiter mid-dance with LED details lit by stage light, crowd participation, handler candids from the floor. Canon 50mm f/1.8 for lightweight low-light carry; Sigma 85mm f/1.4 for fursuit isolation. Spot-meter on subject — stage lighting shifts rapidly.",
         quota: [{ label: 'Min. Photos', value: '45–60' }, { label: 'Note', value: 'Solo — Jarrod still at Muscle Fur' }, { label: 'Recommended Gear', value: 'Sigma 85mm f/1.4 or Canon 50mm f/1.8' }]
     },
 
@@ -206,7 +206,7 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-n-ol4', name: "Offload 4",
         ...t('21:30', '21:45'), col: 'neon', type: 'offload', location: "ConOps",
-        notes: "9:00 PM. DJ transition Pup Riff → Salty. Neon offloads first while Jarrod holds coverage solo (video). Transfer files to Nextcloud server.",
+        notes: "9:30 PM. Neon offloads second after Jarrod returns from Offload 4. Transfer files to Nextcloud server.",
         quota: [{ label: 'Action', value: 'Transfer → Nextcloud, swap to another card' }]
     },
 
@@ -350,8 +350,8 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-j-09', name: "⭐ Opening Words",
         ...t('17:00', '18:00'), col: 'jarrod', type: 'primary', location: "Main Stage",
-        notes: "HIGHEST PRIORITY — locked-off tripod, full ceremony, no stills. A7S III: S-Log3, 4K25fps, ISO 800, Tamron 28-75mm at ~35mm for stage-width framing. NEEWER 74\" tripod. RØDE VideoMic ProPlus: check audio levels pre-event (–12dB peaks), high-pass filter on for indoor reverb. Shinobi II for exposure and framing. Look for: head room on each speaker, re-frame before any reveal prop or screen appears. Record continuously through transitions and applause — do not stop between speakers.",
-        quota: [{ label: 'Min. Video', value: 'Full ceremony record' }, { label: 'Note', value: 'Video only — locked-off tripod full ceremony. Neon is sole stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'NEEWER 74" Pro Video Tripod + Tamron 28-75mm + Atomos Shinobi II' }]
+        notes: "HIGHEST PRIORITY — tripod with dynamic framing to follow each speaker, full ceremony, no stills. A7S III: S-Log3, 4K25fps, ISO 800, Tamron 28-75mm at ~35mm for stage-width framing. NEEWER 74\" tripod with smooth pan/tilt capability. RØDE VideoMic ProPlus: check audio levels pre-event (–12dB peaks), high-pass filter on for indoor reverb. Shinobi II for exposure and framing. Look for: track each speaker smoothly as they move on stage, adjust framing before any reveal prop or screen appears, maintain head room. Record continuously through transitions and applause — do not stop between speakers. Pan/tilt to follow speaker movement with fluid, professional motion.",
+        quota: [{ label: 'Min. Video', value: 'Full ceremony record' }, { label: 'Note', value: 'Video only — dynamic tripod following speakers. Neon is sole stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'NEEWER 74" Pro Video Tripod + Tamron 28-75mm + Atomos Shinobi II' }]
     },
 
     {
@@ -371,8 +371,8 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-j-ffd', name: "⭐ Fursuit Friendly Dance",
         ...t('19:15', '20:00'), col: 'jarrod', type: 'primary', location: "Main Stage",
-        notes: "Covers dance while Neon at Clocktower pass (7:30–7:50). A7S III: S-Cinetone, 4K25fps, ISO 3200–6400, Tamron 28mm wide for floor sweep. Look for: fursuiter mid-dance with suit detail lit by stage lighting, crowd participation surrounding the floor, DJ framing from behind stage. Wide floor B-roll sweep; burst stills at 10fps for mid-fursuit-movement freeze. Neon rejoins at 7:50.",
-        quota: [{ label: 'Min. Photos', value: '30–45' }, { label: 'Min. Video', value: '~270 sec B-roll' }, { label: 'Note', value: 'Neon away at Clocktower pass 7:30–7:50 PM' }, { label: 'Recommended Gear', value: 'A7S III Tamron 28-75mm f/2.8' }]
+        notes: "Covers dance while Neon at Clocktower pass (7:30–7:45). A7S III: S-Cinetone, 4K25fps, ISO 3200–6400, Tamron 28mm wide for floor sweep. Look for: fursuiter mid-dance with suit detail lit by stage lighting, crowd participation surrounding the floor, DJ framing from behind stage. Wide floor B-roll sweep; burst stills at 10fps for mid-fursuit-movement freeze. Neon rejoins at 7:45.",
+        quota: [{ label: 'Min. Photos', value: '30–45' }, { label: 'Min. Video', value: '~270 sec B-roll' }, { label: 'Note', value: 'Neon away at Clocktower pass 7:30–7:45 PM' }, { label: 'Recommended Gear', value: 'A7S III Tamron 28-75mm f/2.8' }]
     },
 
     // ── DJ Sets — BOTH all night, alternating photo/video each 30-min slot ──
@@ -388,7 +388,7 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-j-ol4', name: "Offload 4",
         ...t('21:15', '21:30'), col: 'jarrod', type: 'offload', location: "ConOps",
-        notes: "~9:15 PM. Staggered 15 min after Neon offload 4. Transfer  files to Nextcloud server. Neon holds solo photo coverage 9:15–9:30.",
+        notes: "~9:15 PM. Jarrod offloads first at the Pup Riff → Salty transition. Transfer files to Nextcloud server. Neon holds solo photo coverage 9:15–9:30.",
         quota: [{ label: 'Priority', value: 'High' }, { label: 'Action', value: 'Transfer → Nextcloud, swap to another card' }]
     },
 
@@ -416,7 +416,7 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-j-ol5', name: "Final Offload — wrap",
         ...t('24:00', '24:20'), col: 'jarrod', type: 'offload', location: "ConOps",
-        notes: "After midnight. Transfer all remaining  footage to Nextcloud server. Verify upload integrity before disconnecting. Jarrod wraps for the night.",
+        notes: "After midnight. Transfer all remaining footage to Nextcloud server. Verify upload integrity before disconnecting. Jarrod wraps for the night.",
         quota: [{ label: 'Action', value: 'Transfer all JAR cards → Nextcloud' }, { label: 'Verify', value: 'Check upload integrity' }, { label: 'Note', value: 'Jarrod wrap for the night' }]
     },
 

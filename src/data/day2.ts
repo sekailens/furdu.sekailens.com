@@ -125,7 +125,7 @@ export const eventsDay2: GanttEvent[] = [
     {
         id: 'sat-n-03', name: "⭐ From Garment to Fursuit",
         ...t('16:00', '17:00'), col: 'neon', type: 'primary', location: "Main Stage",
-        notes: "Sole stills — Jarrod on locked tripod video. R6 II: Av f/4, ISO 3200–6400, no flash, IBIS active. Canon 70-300mm for on-stage demonstration detail pulls; swap to Sigma 18-35mm for wide audience reaction shots. Look for: construction prop/costume close-up when held up to audience (burst on the visual reveal), skill-demonstration hand detail, sponsor stages of a finished piece, audience awe expressions. Reframe between demo segments only — don't shift position during active demonstration.",
+        notes: "Sole stills. R6 II: Av f/4, ISO 3200–6400, no flash, IBIS active. Canon 70-300mm for on-stage demonstration detail pulls; swap to Sigma 18-35mm for wide audience reaction shots. Look for: construction prop/costume close-up when held up to audience (burst on the visual reveal), skill-demonstration hand detail, sponsor stages of a finished piece, audience awe expressions. Reframe between demo segments only — don't shift position during active demonstration.",
         quota: [{ label: 'Min. Photos', value: '120–160' }, { label: 'Note', value: 'Sole stills photographer — Jarrod on tripod full video' }, { label: 'Shots', value: 'Speaker, demonstrations, audience reactions' }, { label: 'Recommended Gear', value: 'Canon 70-300mm + Godox V1 Pro' }]
     },
 
@@ -318,8 +318,8 @@ export const eventsDay2: GanttEvent[] = [
     {
         id: 'sat-j-03', name: "⭐ From Garment to Fursuit",
         ...t('16:00', '17:00'), col: 'jarrod', type: 'primary', location: "Main Stage",
-        notes: "Full panel video — locked-off tripod, no stills. A7S III: S-Log3, 4K25fps, ISO 800, Tamron ~35mm for stage-width framing. NEEWER 74\" tripod. RØDE VideoMic ProPlus: check levels pre-event (–12dB peaks), high-pass on for indoor reverb. Shinobi II peaking for speaker focus confirmation. Record continuously through all demo segments and audience questions — do not cut. Look for: each construction prop/demo piece framed when displayed to audience; re-frame if Astris moves from centre.",
-        quota: [{ label: 'Min. Video', value: 'Full panel record' }, { label: 'Note', value: 'Video only — locked-off tripod. Neon is sole stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + NEEWER 74" Pro Video Tripod + Tamron 28-75mm f/2.8 + Atomos Shinobi II' }]
+        notes: "Full panel video — tripod with dynamic framing to follow the presenter, no stills. A7S III: S-Log3, 4K25fps, ISO 800, Tamron ~35mm for stage-width framing. NEEWER 74\" tripod with smooth pan/tilt capability. RØDE VideoMic ProPlus: check levels pre-event (–12dB peaks), high-pass on for indoor reverb. Shinobi II peaking for speaker focus confirmation. Record continuously through all demo segments and audience questions — do not cut. Look for: track Astris smoothly as they move on stage, frame each construction prop/demo piece when displayed to audience, pan/tilt to re-frame as presenter moves. Maintain fluid motion.",
+        quota: [{ label: 'Min. Video', value: 'Full panel record' }, { label: 'Note', value: 'Video only — dynamic tripod following presenter. Neon is sole stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + NEEWER 74" Pro Video Tripod + Tamron 28-75mm f/2.8 + Atomos Shinobi II' }]
     },
 
     {
@@ -332,8 +332,8 @@ export const eventsDay2: GanttEvent[] = [
     {
         id: 'sat-j-04', name: "⭐ FurDU Talent Show",
         ...t('17:30', '19:00'), col: 'jarrod', type: 'primary', location: "Main Stage",
-        notes: "KEY EVENT — full event video on locked tripod, no stills. A7S III: S-Log3, 4K25fps, ISO 1600, NEEWER 74\" tripod. SteadyShot OFF. RØDE VideoMic ProPlus: set -20dB for live stage performance, check pre-show audio levels. Shinobi II for framing confirmation. Record every performance continuously — do not stop between acts. Look for: each act fully in frame with headroom; re-frame to follow MC between acts; monitor audio peaks on Shinobi during loud musical numbers.",
-        quota: [{ label: 'Min. Video', value: 'Full event record' }, { label: 'Note', value: 'Video only — locked-off tripod. Neon handles all stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + NEEWER 74" Pro Video Tripod + Atomos Shinobi II' }]
+        notes: "KEY EVENT — full event video on tripod with dynamic framing to follow performers, no stills. A7S III: S-Log3, 4K25fps, ISO 1600, NEEWER 74\" tripod with smooth pan/tilt capability. SteadyShot OFF. RØDE VideoMic ProPlus: set -20dB for live stage performance, check pre-show audio levels. Shinobi II for framing confirmation. Record every performance continuously — do not stop between acts. Look for: track each performer smoothly, keep fully in-frame with headroom; pan/tilt to follow MC between acts; monitor audio peaks on Shinobi during loud musical numbers. Use fluid tripod movement to follow stage action.",
+        quota: [{ label: 'Min. Video', value: 'Full event record' }, { label: 'Note', value: 'Video only — dynamic tripod following performers. Neon handles all stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + NEEWER 74" Pro Video Tripod + Atomos Shinobi II' }]
     },
 
     {
