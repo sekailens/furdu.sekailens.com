@@ -1,0 +1,172 @@
+---
+import '@/styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'FurDU 2026 — Beyond the Beach · Media Team Hub' } = Astro.props;
+const nav = [
+  { href: '/',                 label: 'Home'            },
+  { href: '/media-guide',     label: 'Media Guide'    },
+  { href: '/schedule',         label: 'Schedule'        },
+];
+const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title} · FurDU 2026 Media</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ── NAV ───────────────────────────────────────────────────────────── -->
+  <header
+    class="sticky top-0 z-50 bg-furdu-bg/90 border-b border-furdu-border backdrop-blur-md"
+    x-data="{ open: false }"
+  >
+    <nav class="max-w-[85vw] mx-auto px-4 h-14 flex items-center justify-between">
+
+      <!-- Logo / wordmark -->
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="text-furdu-teal">
+          <img src="/favicon.png" alt="FurDU logo" width="38" height="38" />
+        </span>
+        <span class="font-bold text-white text-sm tracking-wide group-hover:text-furdu-teal transition-colors">
+          FurDU <span class="text-furdu-teal">2026</span>
+          <span class="text-furdu-muted font-normal ml-1 hidden sm:inline">Media Team Hub</span>
+        </span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="hidden md:flex items-center gap-1">
+        {nav.map(item => {
+          const isActive = item.href === '/'
+            ? current === '/'
+            : current.startsWith(item.href);
+          return (
+            <li>
+              <a
+                href={item.href}
+                class={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
+                  isActive
+                    ? 'text-furdu-teal bg-cyan-900/30'
+                    : 'text-furdu-muted hover:text-white hover:bg-furdu-raised'
+                }`}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="md:hidden p-2 rounded-lg text-furdu-muted hover:text-white hover:bg-furdu-raised transition-colors"
+        @click="open = !open"
+        :aria-expanded="open"
+        aria-label="Toggle menu"
+      >
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile dropdown menu -->
+    <div
+      x-show="open"
+      x-cloak
+      x-transition:enter="transition ease-out duration-150"
+      x-transition:enter-start="opacity-0 -translate-y-2"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-100"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="md:hidden border-t border-furdu-border bg-furdu-bg"
+      @click.outside="open = false"
+    >
+      <ul class="max-w-[85vw] mx-auto px-4 py-2 flex flex-col gap-1">
+        {nav.map(item => {
+          const isActive = item.href === '/'
+            ? current === '/'
+            : current.startsWith(item.href);
+          return (
+            <li>
+              <a
+                href={item.href}
+                @click="open = false"
+                class={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
+                  isActive
+                    ? 'text-furdu-teal bg-cyan-900/30'
+                    : 'text-furdu-muted hover:text-white hover:bg-furdu-raised'
+                }`}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </header>
+
+  <!-- ── PAGE CONTENT ──────────────────────────────────────────────────── -->
+  <main class="flex-1 w-full max-w-[85vw] mx-auto px-4 py-8">
+    <slot />
+  </main>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────────────── -->
+  <footer class="border-t border-furdu-border bg-furdu-surface mt-auto">
+    <div class="max-w-[85vw] mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-furdu-muted">
+      <div class="flex items-center gap-2">
+        <span class="text-furdu-teal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 8v4l3 3"/>
+          </svg>
+        </span>
+        <span>FurDU 2026 · 17–19 April · Gold Coast, QLD</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a
+          href="https://t.me/+lE5mXbU4glpiZTY1"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-1.5 hover:text-furdu-teal transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
+          </svg>
+          Telegram
+        </a>
+        <span class="text-furdu-border">·</span>
+        <span>Media Team Internal</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+<style is:global>
+  [x-cloak] { display: none !important; }
+</style>

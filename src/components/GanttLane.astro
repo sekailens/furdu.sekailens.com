@@ -1,0 +1,201 @@
+---
+import { timeTicks, topCss, heightCss, fmtTime, hpx, freeSlots, START_HOUR } from '@/lib/gantt';
+import type { LanedEvent } from '@/lib/gantt';
+
+/**
+ * Computes adjusted top/height for a free slot so it doesn't get clipped
+ * by a preceding event block whose visual height (min 20px) overshoots the
+ * slot's actual start time.
+ */
+function adjustedFreeSlot(
+  slot: { sh: number; sm: number; eh: number; em: number },
+  events: LanedEvent[]
+): { top: string; height: string } {
+  const prev = events.find(e => e.eh === slot.sh && e.em === slot.sm);
+  if (!prev) {
+    return { top: topCss(slot.sh, slot.sm), height: heightCss(slot.sh, slot.sm, slot.eh, slot.em) };
+  }
+  const prevOffH  = (prev.sh - START_HOUR) + prev.sm / 60;
+  const prevDurH  = (prev.eh - prev.sh)    + (prev.em - prev.sm) / 60;
+  const slotEndH  = (slot.eh - START_HOUR)  + slot.em / 60;
+  // prevBottom = prev event top + max(actual duration, 20px min-height)
+  const prevBottom    = `calc(${hpx(prevOffH)} + max(${hpx(prevDurH)}, 20px))`;
+  const slotActualTop = topCss(slot.sh, slot.sm);
+  return {
+    top:    `max(${slotActualTop}, ${prevBottom})`,
+    height: `max(0px, min(${heightCss(slot.sh, slot.sm, slot.eh, slot.em)}, calc(${hpx(slotEndH)} - ${prevBottom})))`,
+  };
+}
+
+interface Props {
+  stripe: string;
+  /** Pre-computed lane-assigned events for this column */
+  laned: LanedEvent[];
+  /** Alpine expression that evaluates to true when this day is active */
+  show: string;
+  /** Optional second day's lane data */
+  laned2?: LanedEvent[];
+  /** Alpine expression for second day visibility */
+  show2?: string;
+  /** Optional third day's lane data */
+  laned3?: LanedEvent[];
+  /** Alpine expression for third day visibility */
+  show3?: string;
+}
+const { stripe, laned, show, laned2, show2, laned3, show3 } = Astro.props;
+const free  = freeSlots(laned);
+const free2 = freeSlots(laned2 ?? []);
+const free3 = freeSlots(laned3 ?? []);
+---
+<div class={`relative border-l border-furdu-border ${stripe}`}>
+
+  <!-- 15-min grid lines: hour=strong, half=medium, quarter=faint -->
+  {timeTicks.map(t => (
+    <div
+      class={`absolute left-0 right-0 border-t pointer-events-none ${
+        t.kind === 'hour'  ? 'border-furdu-border/40' :
+        t.kind === 'half'  ? 'border-furdu-border/20' :
+                             'border-furdu-border/10'
+      }`}
+      style={`top: ${hpx(t.offset)}`}
+    ></div>
+  ))}
+
+  <!-- Day 1 event blocks -->
+  <div x-show={show} class="absolute inset-0">
+    {free.map((slot: { sh: number; sm: number; eh: number; em: number }) => {
+        const { top, height } = adjustedFreeSlot(slot, laned);
+        return (
+          <div
+            class="gantt-block gantt-free"
+            style={`top: ${top}; height: ${height}; left: 2px; right: 2px;`}
+          >
+            <span class="leading-tight block truncate">Free</span>
+            <span class="text-[10px] opacity-60 leading-none block">{fmtTime(slot.sh, slot.sm)}–{fmtTime(slot.eh, slot.em)}</span>
+          </div>
+        );
+      })}
+    {laned.map(ev => {
+      const lPct = (ev.lane / ev.totalLanes * 100).toFixed(2);
+      const rPct = ((ev.totalLanes - ev.lane - 1) / ev.totalLanes * 100).toFixed(2);
+      // Compute true height in px and enforce min-height (1.25rem = 20px)
+      const pxPerHour = 120; // matches DEFAULT_PX
+      const minHeightPx = 20;
+      const start = ev.sh + ev.sm / 60;
+      const end = ev.eh + ev.em / 60;
+      const blockH = Math.max((end - start) * pxPerHour, minHeightPx);
+      return (
+        <div
+          class={`gantt-block gantt-${ev.type}`}
+          style={`top: ${topCss(ev.sh, ev.sm)}; height: ${blockH}px; left: calc(2px + ${lPct}%); right: calc(2px + ${rPct}%);`}
+          title={`${ev.name} — ${fmtTime(ev.sh, ev.sm)}–${fmtTime(ev.eh, ev.em)}`}
+          data-name={ev.name}
+          data-time={`${fmtTime(ev.sh, ev.sm)}–${fmtTime(ev.eh, ev.em)}`}
+          data-location={ev.location}
+          data-notes={ev.notes}
+          data-quota={JSON.stringify(ev.quota ?? [])}
+          @click="$dispatch('event-detail', { name: $el.dataset.name, time: $el.dataset.time, location: $el.dataset.location, notes: $el.dataset.notes, quota: $el.dataset.quota })"
+        >
+          <span class="leading-tight block truncate">{ev.name}</span>
+          <span class="text-[10px] opacity-60 leading-none block">{fmtTime(ev.sh, ev.sm)}–{fmtTime(ev.eh, ev.em)}</span>
+        </div>
+      );
+    })}
+  </div>
+
+  <!-- Placeholder for days without data yet -->
+  <div
+    x-show={`!(${show})${show2 ? ` && !(${show2})` : ''}${show3 ? ` && !(${show3})` : ''}`}
+    class="absolute inset-0 flex items-center justify-center pointer-events-none"
+    style="display: none"
+  >
+    <span class="text-xs text-furdu-border/50 italic">— no data —</span>
+  </div>
+
+  <!-- Day 2 event blocks -->
+  {show2 && laned2 && (
+    <div x-show={show2} class="absolute inset-0" style="display: none">
+      {free2.map((slot: { sh: number; sm: number; eh: number; em: number }) => {
+          const { top, height } = adjustedFreeSlot(slot, laned2 ?? []);
+          return (
+            <div
+              class="gantt-block gantt-free"
+              style={`top: ${top}; height: ${height}; left: 2px; right: 2px;`}
+            >
+              <span class="leading-tight block truncate">Free</span>
+              <span class="text-[10px] opacity-60 leading-none block">{fmtTime(slot.sh, slot.sm)}–{fmtTime(slot.eh, slot.em)}</span>
+            </div>
+          );
+        })}
+      {laned2.map(ev => {
+        const lPct = (ev.lane / ev.totalLanes * 100).toFixed(2);
+        const rPct = ((ev.totalLanes - ev.lane - 1) / ev.totalLanes * 100).toFixed(2);
+        const pxPerHour = 120;
+        const minHeightPx = 20;
+        const start = ev.sh + ev.sm / 60;
+        const end = ev.eh + ev.em / 60;
+        const blockH = Math.max((end - start) * pxPerHour, minHeightPx);
+        return (
+          <div
+            class={`gantt-block gantt-${ev.type}`}
+            style={`top: ${topCss(ev.sh, ev.sm)}; height: ${blockH}px; left: calc(2px + ${lPct}%); right: calc(2px + ${rPct}%);`}
+            title={`${ev.name} — ${fmtTime(ev.sh, ev.sm)}–${fmtTime(ev.eh, ev.em)}`}
+            data-name={ev.name}
+            data-time={`${fmtTime(ev.sh, ev.sm)}–${fmtTime(ev.eh, ev.em)}`}
+            data-location={ev.location}
+            data-notes={ev.notes}
+            data-quota={JSON.stringify(ev.quota ?? [])}
+            @click="$dispatch('event-detail', { name: $el.dataset.name, time: $el.dataset.time, location: $el.dataset.location, notes: $el.dataset.notes, quota: $el.dataset.quota })"
+          >
+            <span class="leading-tight block truncate">{ev.name}</span>
+            <span class="text-[10px] opacity-60 leading-none block">{fmtTime(ev.sh, ev.sm)}–{fmtTime(ev.eh, ev.em)}</span>
+          </div>
+        );
+      })}
+    </div>
+  )}
+
+  <!-- Day 3 event blocks -->
+  {show3 && laned3 && (
+    <div x-show={show3} class="absolute inset-0" style="display: none">
+      {free3.map((slot: { sh: number; sm: number; eh: number; em: number }) => {
+          const { top, height } = adjustedFreeSlot(slot, laned3 ?? []);
+          return (
+            <div
+              class="gantt-block gantt-free"
+              style={`top: ${top}; height: ${height}; left: 2px; right: 2px;`}
+            >
+              <span class="leading-tight block truncate">Free</span>
+              <span class="text-[10px] opacity-60 leading-none block">{fmtTime(slot.sh, slot.sm)}–{fmtTime(slot.eh, slot.em)}</span>
+            </div>
+          );
+        })}
+      {laned3.map(ev => {
+        const lPct = (ev.lane / ev.totalLanes * 100).toFixed(2);
+        const rPct = ((ev.totalLanes - ev.lane - 1) / ev.totalLanes * 100).toFixed(2);
+        const pxPerHour = 120;
+        const minHeightPx = 20;
+        const start = ev.sh + ev.sm / 60;
+        const end = ev.eh + ev.em / 60;
+        const blockH = Math.max((end - start) * pxPerHour, minHeightPx);
+        return (
+          <div
+            class={`gantt-block gantt-${ev.type}`}
+            style={`top: ${topCss(ev.sh, ev.sm)}; height: ${blockH}px; left: calc(2px + ${lPct}%); right: calc(2px + ${rPct}%);`}
+            title={`${ev.name} — ${fmtTime(ev.sh, ev.sm)}–${fmtTime(ev.eh, ev.em)}`}
+            data-name={ev.name}
+            data-time={`${fmtTime(ev.sh, ev.sm)}–${fmtTime(ev.eh, ev.em)}`}
+            data-location={ev.location}
+            data-notes={ev.notes}
+            data-quota={JSON.stringify(ev.quota ?? [])}
+            @click="$dispatch('event-detail', { name: $el.dataset.name, time: $el.dataset.time, location: $el.dataset.location, notes: $el.dataset.notes, quota: $el.dataset.quota })"
+          >
+            <span class="leading-tight block truncate">{ev.name}</span>
+            <span class="text-[10px] opacity-60 leading-none block">{fmtTime(ev.sh, ev.sm)}–{fmtTime(ev.eh, ev.em)}</span>
+          </div>
+        );
+      })}
+    </div>
+  )}
+
+</div>

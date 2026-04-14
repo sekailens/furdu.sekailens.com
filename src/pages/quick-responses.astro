@@ -1,0 +1,351 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+interface Response {
+  id: number;
+  title: string;
+  trigger: string;
+  body: string;
+}
+
+const responses: Response[] = [
+  {
+    id: 1,
+    title: 'Initial Interest / "Tell Me More"',
+    trigger: 'Use when someone says they\'re curious, interested, or wants to know what\'s involved — before they\'ve committed.',
+    body: `Hey [name]! Thanks for reaching out 😊
+
+Here's the short version of what being a media volunteer involves:
+
+📸 Role: You'd be covering events throughout the con — panels, stage shows, meetups, the fursuit walk, and general con atmosphere. Stills photography is the main need, though video capability is a bonus.
+
+🎫 Media pass: We issue media passes valid for the full 3-day con (Fri–Sun). If you weren't able to get regular rego, this gets you in the door specifically for coverage duties.
+
+🎒 Gear: You'd need to bring your own camera and equipment — FurDU doesn't supply photography gear to volunteers. By "decent camera" we mean something with manual exposure controls (aperture, shutter speed, ISO) that can handle indoor low-light without everything going blurry or noisy — so a DSLR or mirrorless is ideal. A fast prime or versatile zoom lens helps a lot. We'll go into more detail if you want!
+
+🕐 Time commitment: There's no expectation you're shooting 100% of the time. We work around your availability and assign you to specific events or time blocks, so you can still enjoy the con.
+
+📱 After the con: You submit your raw/unedited photos to us and FurDU takes care of all the editing, culling, and publishing. You'd get credited for your work.
+
+No formal experience needed — just a camera with manual controls, a willingness to help out, and a good attitude!
+
+Want me to run you through the specifics, or are you happy to jump in? 🐾`,
+  },
+  {
+    id: 2,
+    title: '"What Camera / Gear Do I Need?"',
+    trigger: 'Use when someone asks about equipment requirements.',
+    body: `Hey [name]! Just a heads up — volunteers are expected to bring their own gear. FurDU doesn't supply cameras or lenses to media team members, so you'd be shooting with your own kit throughout the con.
+
+That said, here's exactly what we're looking for — and what we're not:
+
+✅ Great fit:
+- DSLR or mirrorless with interchangeable lenses
+- A versatile zoom (e.g. 24–70mm, 18–135mm) or a fast prime (e.g. 50mm f/1.8)
+- Camera can shoot in Aperture Priority or full Manual mode
+- Handles ISO 1600–3200 without the image becoming unusable (important for dim panel rooms and late-night DJ/dance events)
+- Ideally capable of continuous burst shooting for action events (dance comp, Floor Wars)
+
+✅ Also works:
+- A fixed-lens compact or bridge camera with manual exposure controls and good low-light performance
+- Sony/Canon/Nikon/Fuji prosumer cameras
+- Older but capable gear is totally fine — a 10-year-old DSLR in good condition beats a brand-new phone
+
+⚠️ Harder to work with:
+- Phone cameras — fine for casual shots but we can't issue a media pass for phone-only coverage, and low-light/action performance usually isn't up to the job
+- Fully auto point-and-shoots with no manual control
+- Heavily entry-level gear where the shooter can't control shutter speed (motion blur on dancers is the main issue)
+
+If you're unsure whether your kit is a good fit, just tell me what you're shooting with and I'll give you an honest answer 😊`,
+  },
+  {
+    id: 3,
+    title: '"What Events Would I Be Covering?"',
+    trigger: 'Use when someone asks what they\'d actually be shooting.',
+    body: `Great question! We have a full schedule across Fri–Sun. Some highlights you may be assigned to cover:
+
+🐾 Fursuit Walk & beach group photo (Sat morning) — the biggest event of the con
+🎤 Opening & Closing Ceremonies
+💃 Dance Competition, Talent Show, Floor Wars
+🛍️ Dealers Den & Artists Alley
+🎮 Games Room events, panels, meetups
+
+We'd match your availability and interests to specific time blocks — you won't be expected to cover everything. Just let me know which days you can do and if there are events you're particularly keen on!`,
+  },
+  {
+    id: 4,
+    title: '"I Already Have a Rego / I\'m Already Attending"',
+    trigger: 'Use when someone is a regular attendee and wants to contribute as a media volunteer on top of their existing rego.',
+    body: `That's awesome, [name]! If you already have rego, you don't need a media pass — your existing rego covers your access.
+
+What we'd do is add you to the media volunteer guide, give you a media lanyard/badge (so you can move around events for coverage), and slot you into time blocks that work around your own plans for the weekend.
+
+Totally flexible — even if you can only commit to a few hours across the con, it's a help 🙌
+
+Want me to lock you in?`,
+  },
+  {
+    id: 5,
+    title: '"What Do I Do With My Photos After?"',
+    trigger: 'Use when someone asks about photo submission, editing, credit, or what happens to the images.',
+    body: `After the con, we ask volunteers to submit their raw/unedited photos — FurDU handles all the culling, editing, and publishing. No need to spend hours in Lightroom on your end!
+
+Here's the general process:
+
+1. Upload your raw files (RAW format — no JPEGs) to our shared folder (we'll give you the link)
+2. Our media lead reviews and culls the best shots
+3. FurDU edits and incorporates them into the official FurDU 2026 gallery and socials
+
+📸 Credit: All published photos are credited to you by name (or handle if you prefer).
+
+🕐 Deadline: We ask for selects within 7 days of the con wrapping up (by ~26 April).
+
+No pressure on quantity — even 20–30 strong shots from your coverage blocks is plenty!`,
+  },
+  {
+    id: 6,
+    title: '"Is This Paid?"',
+    trigger: 'Use when someone asks about compensation.',
+    body: `Hey [name]! Media volunteering at FurDU is unpaid — it's a community-run con and all our team are volunteers 🙂
+
+What you do get:
+🎫 A media pass (if you don't already have rego) covering the full 3 days
+📸 Photo credit on all published work
+🐾 Access to areas and angles you wouldn't otherwise get as a general attendee
+
+If that works for you, we'd love to have you on the team!`,
+  },
+  {
+    id: 7,
+    title: 'Confirming Someone Is Accepted',
+    trigger: 'Use when you\'re ready to formally bring someone on board.',
+    body: `Hey [name]! Welcome to the FurDU 2026 media team! 🎉🐾
+
+Here's what happens next:
+
+1. Media pass — I'll pass your details to the FurDU team to get your pass sorted. Keep an eye on your inbox/DMs closer to the con date.
+2. Guide — I'll add you to the coverage schedule and share your assigned time blocks before the con starts.
+3. Media group — I'll add you to the media Telegram group so you're across all comms and updates.
+4. Day 1 — Check in at ConOps when you arrive and pick up your media lanyard.
+
+Any questions between now and then, just ping me here. See you at the con! 🌊`,
+  },
+  {
+    id: 8,
+    title: 'Politely Declining / Not the Right Fit',
+    trigger: 'Use when someone\'s gear or availability isn\'t suitable, or slots are filled.',
+    body: `Hey [name]! Really appreciate you reaching out and showing interest — it means a lot 🙏
+
+Unfortunately [we've filled our volunteer slots for this year / your current setup might be a bit tricky to work with for media coverage purposes], but I'd encourage you to keep an eye out — we sometimes have last-minute openings closer to the con.
+
+Hope to see you at FurDU regardless, and feel free to reach out again next year! 🐾`,
+  },
+  {
+    id: 9,
+    title: '"When Do You Need an Answer By?"',
+    trigger: 'Use when someone needs a deadline.',
+    body: `No rush, but ideally I'd love to know by [DATE — suggest ~3–5 days before con] so I can get the guide sorted and your media pass processed in time.
+
+If you need a bit longer to decide that's fine too — just let me know either way when you can! 😊`,
+  },
+  {
+    id: 10,
+    title: 'Follow-Up If No Response',
+    trigger: 'Use if someone expressed interest but has gone quiet for a few days.',
+    body: `Hey [name]! Just following up on the media volunteering chat 😊 No pressure at all — just want to make sure I save you a spot on the guide if you're still keen, or free it up if plans have changed.
+
+Let me know either way when you get a chance! 🐾`,
+  },
+];
+
+const quickRef = [
+  { q: 'Convention dates',           a: 'Fri 17 – Sun 19 April 2026' },
+  { q: 'Location',                   a: 'Gold Coast, QLD' },
+  { q: 'Media pass covers',          a: 'Full 3-day access for coverage duties' },
+  { q: 'Gear',                       a: 'Volunteers bring their own — FurDU does not supply cameras or lenses' },
+  { q: 'Gear minimum',               a: 'DSLR/mirrorless preferred; phone-only not eligible for media pass' },
+  { q: 'Time commitment',            a: 'Flexible — assigned blocks, not all-day mandatory' },
+  { q: 'Photo submission deadline',  a: 'Within 7 days post-con (~26 April)' },
+  { q: 'Credit',                     a: 'Named photo credit on all published work' },
+  { q: 'Paid?',                      a: 'No — volunteer role' },
+  { q: 'Who confirms acceptance',    a: 'Reo (you)' },
+  { q: 'Where to check in on-site',  a: 'ConOps' },
+];
+---
+<Layout title="Quick Responses">
+
+  <!-- ── PAGE HEADER ──────────────────────────────────────────────────── -->
+  <div class="mb-8">
+    <div class="flex items-center gap-2 text-sm text-furdu-muted mb-2">
+      <a href="/" class="hover:text-furdu-teal transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-white">Quick Responses</span>
+    </div>
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">
+      Telegram Quick Responses
+    </h1>
+    <p class="text-furdu-muted text-sm max-w-xl">
+      Ready-to-send reply templates for media volunteer recruitment.
+      For use by <strong class="text-white">Reo</strong> when responding to DMs and group chat queries.
+    </p>
+    <div class="mt-3 card border-l-4 border-orange-500 px-4 py-2.5 text-sm text-furdu-muted">
+      <strong class="text-white">Usage:</strong> Copy, paste, and personalise the
+      <code class="bg-furdu-bg px-1.5 py-0.5 rounded text-orange-400 text-xs">[bracketed]</code>
+      fields before sending. Convention dates: <strong class="text-white">17–19 April 2026, Gold Coast.</strong>
+    </div>
+  </div>
+
+  <!-- ── RESPONSE CARDS ────────────────────────────────────────────────── -->
+  <div class="space-y-3 mb-10">
+    {responses.map(r => (
+      <div
+        class="card overflow-hidden"
+        x-data={`{ open: false, copied: false, text: ${JSON.stringify(r.body)} }`}
+      >
+        <!-- Card header -->
+        <button
+          class="accordion-btn rounded-none"
+          @click="open = !open"
+          :aria-expanded="open"
+        >
+          <div class="flex items-center gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-furdu-raised border border-furdu-border
+                         flex items-center justify-center text-xs font-bold text-furdu-teal">
+              {r.id}
+            </span>
+            <span class="text-left">{r.title}</span>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            class="shrink-0 text-furdu-muted transition-transform duration-200"
+            :class="open ? 'rotate-180' : ''"
+            viewBox="0 0 24 24"
+          >
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+
+        <!-- Expanded body -->
+        <div
+          x-show="open"
+          x-cloak
+          x-transition:enter="transition ease-out duration-200"
+          x-transition:enter-start="opacity-0 -translate-y-1"
+          x-transition:enter-end="opacity-100 translate-y-0"
+          x-transition:leave="transition ease-in duration-150"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+          class="border-t border-furdu-border"
+        >
+          <!-- Trigger hint -->
+          <div class="px-4 py-2.5 bg-furdu-bg/50">
+            <p class="text-xs text-furdu-muted italic">
+              <span class="text-furdu-teal font-medium not-italic">When to use: </span>
+              {r.trigger}
+            </p>
+          </div>
+
+          <!-- Message body -->
+          <div class="px-4 pb-4 pt-3">
+            <div class="relative">
+              <pre
+                x-ref="msgtext"
+                class="bg-furdu-bg rounded-lg p-4 text-sm text-furdu-text font-sans whitespace-pre-wrap leading-relaxed
+                       border border-furdu-border overflow-x-auto"
+              >{r.body}</pre>
+
+              <!-- Copy button -->
+              <button
+                class="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium
+                       transition-all duration-200 border"
+                :class="copied
+                  ? 'bg-green-900/60 border-green-600/50 text-green-400'
+                  : 'bg-furdu-surface border-furdu-border text-furdu-muted hover:text-furdu-teal hover:border-furdu-teal hover:bg-cyan-900/20'"
+                @click="navigator.clipboard.writeText(text).then(() => { copied = true; setTimeout(() => copied = false, 2000) })"
+                :aria-label="copied ? 'Copied!' : 'Copy to clipboard'"
+              >
+                <!-- Check icon (copied) -->
+                <svg x-show="copied" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                     fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <!-- Copy icon (default) -->
+                <svg x-show="!copied" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                <span x-text="copied ? 'Copied!' : 'Copy'"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- ── EXPAND / COLLAPSE ALL ─────────────────────────────────────────── -->
+  <div class="flex gap-3 mb-8" x-data>
+    <button
+      class="btn-ghost text-xs"
+      @click="$dispatch('open-all')"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24">
+        <polyline points="6 15 12 9 18 15"/>
+      </svg>
+      Expand all
+    </button>
+    <button
+      class="btn-ghost text-xs"
+      @click="$dispatch('close-all')"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+      Collapse all
+    </button>
+  </div>
+
+  <!-- ── QUICK REFERENCE TABLE ─────────────────────────────────────────── -->
+  <section id="quick-ref">
+    <h2 class="section-title">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" class="text-furdu-teal" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 16v-4"/><path d="M12 8h.01"/>
+      </svg>
+      Quick Reference — Key Facts
+    </h2>
+    <div class="table-auto-scroll rounded-xl overflow-hidden border border-furdu-border">
+      <table class="data-table">
+        <thead>
+          <tr><th>Question</th><th>Answer</th></tr>
+        </thead>
+        <tbody>
+          {quickRef.map(r => (
+            <tr>
+              <td class="font-medium text-white whitespace-nowrap">{r.q}</td>
+              <td class="text-furdu-muted text-sm">{r.a}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // Global open/close all for accordion cards
+  document.addEventListener('open-all', () => {
+    document.querySelectorAll<HTMLElement>('[x-data]').forEach(el => {
+      if (el.hasAttribute('x-data') && (el.getAttribute('x-data') ?? '').includes('open:')) {
+        const evt = new CustomEvent('open-all-internal');
+        el.dispatchEvent(evt);
+      }
+    });
+  });
+</script>

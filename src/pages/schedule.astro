@@ -1,0 +1,229 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import GanttLegend       from '@/components/GanttLegend.astro';
+import GanttDayTabs      from '@/components/GanttDayTabs.astro';
+import GanttLane         from '@/components/GanttLane.astro';
+import GanttEventDetail  from '@/components/GanttEventDetail.astro';
+import GanttZoomControl  from '@/components/GanttZoomControl.astro';
+import {
+  hpx, timeTicks, assignLanes,
+  DAYS, COLUMNS, LEGEND_ITEMS, TOTAL_HOURS,
+} from '@/lib/gantt';
+import { eventsDay1 } from '@/data/day1';
+import { eventsDay2 } from '@/data/day2';
+import { eventsDay3 } from '@/data/day3';
+
+// Pre-compute lane-assigned events per column
+const day1Lanes = Object.fromEntries(
+  COLUMNS.map(col => [col.id, assignLanes(eventsDay1.filter(e => e.col === col.id))])
+);
+const day2Lanes = Object.fromEntries(
+  COLUMNS.map(col => [col.id, assignLanes(eventsDay2.filter(e => e.col === col.id))])
+);
+const day3Lanes = Object.fromEntries(
+  COLUMNS.map(col => [col.id, assignLanes(eventsDay3.filter(e => e.col === col.id))])
+);
+
+---
+<Layout title="Schedule">
+
+  <!-- ── PAGE HEADER ──────────────────────────────────────────────────── -->
+  <div class="mb-6">
+    <div class="flex items-center gap-2 text-sm text-furdu-muted mb-2">
+      <a href="/" class="hover:text-furdu-teal transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-white">Schedule</span>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white mb-1">Coverage Schedule</h1>
+        <p class="text-furdu-muted text-sm">Vertical timeline — time flows down, shooters across.</p>
+      </div>
+      <GanttZoomControl />
+    </div>
+  </div>
+
+  <!-- ── MAIN GANTT WRAPPER — Alpine sets --hour-px on this element ── -->
+  <div
+    x-data="ganttRoot()"
+    style="--hour-px: 120px"
+    :style="'--hour-px: ' + hourPx + 'px'"
+    @zoom-change.window="hourPx = Math.round($event.detail.zoom / 100 * 120)"
+  >
+    <!-- Coverage note -->
+    <div class="card border-l-4 border-furdu-teal px-4 py-3 mb-4 text-sm flex items-start gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" class="text-furdu-teal shrink-0 mt-0.5" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+      </svg>
+      <p class="text-furdu-muted">
+        <strong class="text-white">Assigned events are coverage targets, not mandatory full-duration commitments.</strong>
+        Once you're satisfied you have a good set of shots, meet or exceed the quota, and captured highlights from an event, you're free to roam and explore the con until your next assignment. Use the time to find candids, visit panels at your own pace, or rest — just be back on location before the next scheduled block.
+      </p>
+    </div>
+
+    <GanttDayTabs days={DAYS} />
+
+    <GanttLegend items={LEGEND_ITEMS} />
+
+    <!-- ── GANTT CARD ────────────────────────────────────────────────── -->
+    <div class="card overflow-hidden" id="gantt-card">
+
+      <!--
+        Grid: 4 columns
+          col 1 (72px) : time gutter
+          col 2–4      : member lanes — Neon | Jarrod | Offloads
+        Height is driven by the --hour-px CSS var so zoom works without JS layout updates.
+      -->
+
+      <!-- Scrollable timeline body — column header lives inside for sticky-within-scroll behaviour -->
+      <div class="overflow-y-auto" style="max-height: 70vh; min-height: 200px" id="gantt-body">
+
+        <!-- Sticky column-header row (top-0 sticks within gantt-body, not the page) -->
+        <div class="grid grid-cols-[72px_1fr_1fr] sticky top-0 z-30 border-b border-furdu-border bg-furdu-raised">
+          <div class="px-2 py-3 border-r border-furdu-border flex items-end pb-3">
+            <span class="text-xs text-furdu-muted/60 font-semibold uppercase tracking-wider">Time</span>
+          </div>
+          {COLUMNS.map(col => (
+            <div class="px-3 py-3 border-l border-furdu-border">
+              <div class="flex items-center gap-1.5">
+                <div class={`w-2.5 h-2.5 rounded-full shrink-0 ${col.dot}`}></div>
+                <span class="font-bold text-white">{col.label}</span>
+              </div>
+              <span class="text-xs text-furdu-muted pl-4">{col.role}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Timeline grid — height controlled by CSS var for zoom reactivity -->
+        <div
+          class="grid grid-cols-[72px_1fr_1fr]"
+          style={`height: ${hpx(TOTAL_HOURS)}`}
+          id="gantt-grid"
+        >
+
+          <!-- Time gutter: hour labels only -->
+          <div class="relative border-r border-furdu-border bg-furdu-surface/60">
+            {timeTicks.filter(t => t.kind === 'hour').map(t => (
+              <div
+                class="absolute right-0 left-0 flex items-center justify-end pr-2
+                       text-xs font-mono text-furdu-muted select-none whitespace-nowrap"
+                style={`top: ${hpx(t.offset)}; transform: translateY(${t.offset === 0 ? '2px' : '-50%'})`}
+              >
+                {t.label}
+              </div>
+            ))}
+          </div>
+
+          <!-- Member lane columns -->
+          {COLUMNS.map(col => (
+            <GanttLane
+              stripe={col.stripe}
+              laned={day1Lanes[col.id]}
+              show="day === 'fri'"
+              laned2={day2Lanes[col.id]}
+              show2="day === 'sat'"
+              laned3={day3Lanes[col.id]}
+              show3="day === 'sun'"
+            />
+          ))}
+
+        </div>
+        <!-- /timeline grid -->
+
+      </div>
+      <!-- /gantt-body -->
+
+    </div>
+    <!-- /card -->
+
+    <GanttEventDetail />
+
+  </div>
+  <!-- /gantt-root -->
+
+</Layout>
+
+<style>
+  /* Scrollbar for vertical body */
+  #gantt-body {
+    scrollbar-color: #1a3355 transparent;
+    scrollbar-width: thin;
+  }
+  #gantt-body::-webkit-scrollbar { width: 6px; }
+  #gantt-body::-webkit-scrollbar-track { background: transparent; }
+  #gantt-body::-webkit-scrollbar-thumb { background: #1a3355; border-radius: 3px; }
+</style>
+
+<script>
+  function ganttRoot() {
+    return {
+      day: 'fri' as string,
+      hourPx: 120,
+      detail: null as Record<string, string> | null,
+    };
+  }
+
+  (window as Window & typeof globalThis & Record<string, unknown>).ganttRoot = ganttRoot;
+
+  // ── Ctrl+scroll and pinch-to-zoom on the gantt card ──────────────────
+  (function () {
+    const MIN_ZOOM = 100;
+    const MAX_ZOOM = 200;
+    const BASE_PX  = 120;
+
+    // Current logical zoom (0–300), kept in sync with the Alpine component
+    let zoom = 100;
+
+    function clamp(v: number) { return Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, v)); }
+
+    function applyZoom(next: number) {
+      zoom = clamp(Math.round(next));
+      window.dispatchEvent(new CustomEvent('zoom-change', { detail: { zoom } }));
+    }
+
+    // ── Ctrl + wheel ──────────────────────────────────────────────────
+    document.addEventListener('wheel', (e: WheelEvent) => {
+      if (!e.ctrlKey && !e.metaKey) return;
+      const card = document.getElementById('gantt-card');
+      if (!card || !card.contains(e.target as Node)) return;
+      e.preventDefault();
+      // deltaY > 0 = scroll down = zoom out; < 0 = zoom in
+      const delta = e.deltaMode === 1 ? e.deltaY * 20 : e.deltaY; // line vs px mode
+      applyZoom(zoom - delta * 0.15);
+    }, { passive: false });
+
+    // ── Pinch-to-zoom (touch) ─────────────────────────────────────────
+    let lastDist = 0;
+
+    function touchDist(e: TouchEvent) {
+      const [a, b] = [e.touches[0], e.touches[1]];
+      const dx = a.clientX - b.clientX;
+      const dy = a.clientY - b.clientY;
+      return Math.hypot(dx, dy);
+    }
+
+    document.addEventListener('touchstart', (e: TouchEvent) => {
+      if (e.touches.length === 2) lastDist = touchDist(e);
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e: TouchEvent) => {
+      if (e.touches.length !== 2) return;
+      const card = document.getElementById('gantt-card');
+      if (!card || !card.contains(e.target as Node)) return;
+      const dist = touchDist(e);
+      if (lastDist === 0) { lastDist = dist; return; }
+      const scale = dist / lastDist;
+      lastDist = dist;
+      applyZoom(zoom * scale);
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => { lastDist = 0; }, { passive: true });
+
+    // Keep local zoom in sync if the ±buttons are used
+    window.addEventListener('zoom-change', (e: Event) => {
+      const z = (e as CustomEvent<{ zoom: number }>).detail.zoom;
+      if (z !== zoom) zoom = z;
+    });
+  })();
+</script>

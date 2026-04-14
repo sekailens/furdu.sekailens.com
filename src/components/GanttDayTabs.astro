@@ -1,0 +1,20 @@
+---
+import type { DAYS } from '@/lib/gantt';
+interface Props {
+  days: typeof DAYS;
+}
+const { days } = Astro.props;
+---
+<div class="flex rounded-xl overflow-hidden border border-furdu-border mb-4">
+  {days.map(d => (
+    <button
+      class="flex-1 py-3 px-2 text-center transition-colors duration-150"
+      :class={`day === '${d.id}' ? 'bg-cyan-900/30 text-furdu-teal' : 'bg-furdu-surface text-furdu-muted hover:text-white hover:bg-furdu-raised'`}
+      @click={`day = '${d.id}'`}
+    >
+      <span class="block text-xs font-bold uppercase tracking-wider">{d.sub}</span>
+      <span class="block text-xs sm:text-sm font-semibold">{d.label}</span>
+      <span class="block text-xs text-furdu-muted">{d.date}</span>
+    </button>
+  ))}
+</div>
