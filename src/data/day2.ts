@@ -242,7 +242,7 @@ export const eventsDay2: GanttEvent[] = [
 
     {
         id: 'sat-n-ol5', name: "Final Offload — wrap",
-        ...t('23:30', '23:50'), col: 'neon', type: 'offload', location: "ConOps",
+        ...t('23:30', '23:45'), col: 'neon', type: 'offload', location: "ConOps",
         notes: "~11:30 PM. After CoryKuma photo block. Transfer all remaining NEON cards to Nextcloud server. Neon wraps for the night — Jarrod continues closing video solo.",
         quota: [{ label: 'Action', value: 'Transfer all NEON cards → Nextcloud' }, { label: 'Note', value: 'Neon wrap for the night' }]
     },
@@ -345,7 +345,7 @@ export const eventsDay2: GanttEvent[] = [
 
     {
         id: 'sat-j-ol3', name: "Offload 3",
-        ...t('19:15', '19:30'), col: 'jarrod', type: 'offload', location: "ConOps",
+        ...t('19:45', '20:00'), col: 'jarrod', type: 'offload', location: "ConOps",
         notes: "~7:15 PM. Staggered 15 min after Neon offload 3. Transfer talent show footage JAR-C to Nextcloud server.",
         quota: [{ label: 'Priority', value: 'High' }, { label: 'Action', value: 'Transfer JAR-C → Nextcloud, swap to JAR-D' }]
     },
@@ -413,7 +413,7 @@ export const eventsDay2: GanttEvent[] = [
 
     {
         id: 'sat-j-ol5', name: "Final Offload — wrap",
-        ...t('24:00', '24:20'), col: 'jarrod', type: 'offload', location: "ConOps",
+        ...t('24:00', '24:15'), col: 'jarrod', type: 'offload', location: "ConOps",
         notes: "After midnight. Transfer all remaining JAR-E footage to Nextcloud server. Verify upload integrity before disconnecting. Jarrod wraps for the night.",
         quota: [{ label: 'Action', value: 'Transfer all JAR cards → Nextcloud' }, { label: 'Verify', value: 'Check upload integrity' }, { label: 'Note', value: 'Jarrod wrap for the night' }]
     },

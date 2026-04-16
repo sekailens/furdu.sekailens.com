@@ -165,16 +165,9 @@ export const eventsDay1: GanttEvent[] = [
 
     {
         id: 'fri-n-ol3', name: "Offload 3",
-        ...t('18:15', '18:35'), col: 'neon', type: 'offload', location: "ConOps",
+        ...t('18:45', '19:00'), col: 'neon', type: 'offload', location: "ConOps",
         notes: "~6:15 PM. Natural gap after Opening Words ends. HIGH PRIORITY — transfer ceremony footage to Nextcloud server.",
         quota: [{ label: 'Priority', value: 'High' }, { label: 'Action', value: 'Transfer → Nextcloud, swap to another card' }]
-    },
-
-    {
-        id: 'fri-n-sub', name: "Subculture vs Slop (pass)",
-        ...t('18:35', '18:50'), col: 'neon', type: 'neon', location: "Panel Room",
-        notes: "15-min pass post-offload 3. R6 II: Av f/2.8, ISO 1600–3200 — panel rooms are dim, don't be afraid to push. Look for: presenter at podium, engaged audience candids, panel atmosphere. Canon 70-300mm for stage reach from audience.",
-        quota: [{ label: 'Min. Photos', value: '15–24' }, { label: 'Duration', value: '15 min pass' }]
     },
 
     {
@@ -243,7 +236,7 @@ export const eventsDay1: GanttEvent[] = [
 
     {
         id: 'fri-n-ol5', name: "Final Offload — wrap",
-        ...t('23:30', '23:50'), col: 'neon', type: 'offload', location: "ConOps",
+        ...t('23:30', '23:45'), col: 'neon', type: 'offload', location: "ConOps",
         notes: "~11:30 PM. After Diesel photo block ends. Transfer all remaining cards to Nextcloud server. Neon wraps for the night — Jarrod continues closing video solo.",
         quota: [{ label: 'Action', value: 'Transfer all NEON cards → Nextcloud' }, { label: 'Note', value: 'Neon wrap for the night' }]
     },
@@ -370,7 +363,7 @@ export const eventsDay1: GanttEvent[] = [
 
     {
         id: 'fri-j-ol3', name: "Offload 3",
-        ...t('18:30', '18:50'), col: 'jarrod', type: 'offload', location: "ConOps",
+        ...t('18:30', '18:45'), col: 'jarrod', type: 'offload', location: "ConOps",
         notes: "~6:30 PM. Staggered 15 min after Neon offload 3. HIGH PRIORITY — transfer ceremony footage to Nextcloud server.",
         quota: [{ label: 'Priority', value: 'High' }, { label: 'Action', value: 'Transfer → Nextcloud, swap to another card' }]
     },
@@ -429,7 +422,7 @@ export const eventsDay1: GanttEvent[] = [
 
     {
         id: 'fri-j-ol5', name: "Final Offload — wrap",
-        ...t('24:00', '24:20'), col: 'jarrod', type: 'offload', location: "ConOps",
+        ...t('24:00', '24:15'), col: 'jarrod', type: 'offload', location: "ConOps",
         notes: "After midnight. Transfer all remaining footage to Nextcloud server. Verify upload integrity before disconnecting. Jarrod wraps for the night.",
         quota: [{ label: 'Action', value: 'Transfer all JAR cards → Nextcloud' }, { label: 'Verify', value: 'Check upload integrity' }, { label: 'Note', value: 'Jarrod wrap for the night' }]
     },

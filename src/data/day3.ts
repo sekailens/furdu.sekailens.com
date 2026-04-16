@@ -181,7 +181,7 @@ export const eventsDay3: GanttEvent[] = [
 
     {
         id: 'sun-n-ol5', name: "Final Offload — wrap",
-        ...t('23:30', '23:50'), col: 'neon', type: 'offload', location: "ConOps",
+        ...t('23:30', '23:45'), col: 'neon', type: 'offload', location: "ConOps",
         notes: "~11:30 PM. After NOR photo block. Transfer all remaining NEON cards to Nextcloud server. Neon wraps for the convention — Jarrod continues closing video solo.",
         quota: [{ label: 'Action', value: 'Transfer all NEON cards → Nextcloud' }, { label: 'Note', value: 'Neon convention wrap' }]
     },
@@ -338,7 +338,7 @@ export const eventsDay3: GanttEvent[] = [
 
     {
         id: 'sun-j-ol5', name: "Final Offload — convention wrap",
-        ...t('24:00', '24:20'), col: 'jarrod', type: 'offload', location: "ConOps",
+        ...t('24:00', '24:15'), col: 'jarrod', type: 'offload', location: "ConOps",
         notes: "After midnight. Transfer all remaining JAR-E footage to Nextcloud server. Verify upload integrity on ALL cards from all three days before disconnecting. Convention complete.",
         quota: [{ label: 'Action', value: 'Transfer all JAR cards → Nextcloud' }, { label: 'Verify', value: 'Check upload integrity — all 3 days' }, { label: 'Note', value: 'Convention wrap' }]
     },
