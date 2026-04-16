@@ -62,8 +62,8 @@ export const eventsDay2: GanttEvent[] = [
     {
         id: 'sat-n-01', name: "⭐ Fursuit Walk",
         ...t('10:00', '12:00'), col: 'neon', type: 'primary', location: "All Rooms / Beach",
-        notes: "HIGHEST PRIORITY Day 2 — primary stills, Jarrod on Flowline video. R6 II: Tv 1/640s, ISO 400–800 outdoors (raise to ISO 1600–3200 for indoor corridors), f/5.6, Servo AF+Tracking, 12fps burst, IBIS on. Sigma 85mm for parade-line portrait isolation; Sigma 18-35mm for wide crowd and beach establishing. Look for: parade column leading-line from street level, individual suit details mid-march (LED, fabric texture, eyes), bystander reactions framed outside the procession, beach group formation from elevated position, eye-level approach to fursuiter face height.",
-        quota: [{ label: 'Min. Photos', value: '200–270' }, { label: 'Note', value: 'Primary stills — Jarrod on Flowline video' }, { label: 'Shots', value: 'Assembly, march, group photo, candids' }, { label: 'Recommended Gear', value: 'Sigma 85mm f/1.4 + Sigma 18-35mm f/1.8' }]
+        notes: "HIGHEST PRIORITY Day 2 — primary stills, Jarrod on handheld video. R6 II: Tv 1/640s, ISO 400–800 outdoors (raise to ISO 1600–3200 for indoor corridors), f/5.6, Servo AF+Tracking, 12fps burst, IBIS on. Sigma 85mm for parade-line portrait isolation; Sigma 18-35mm for wide crowd and beach establishing. Look for: parade column leading-line from street level, individual suit details mid-march (LED, fabric texture, eyes), bystander reactions framed outside the procession, beach group formation from elevated position, eye-level approach to fursuiter face height.",
+        quota: [{ label: 'Min. Photos', value: '200–270' }, { label: 'Note', value: 'Primary stills — Jarrod on handheld video' }, { label: 'Shots', value: 'Assembly, march, group photo, candids' }, { label: 'Recommended Gear', value: 'Sigma 85mm f/1.4 + Sigma 18-35mm f/1.8' }]
     },
 
     {
@@ -165,10 +165,10 @@ export const eventsDay2: GanttEvent[] = [
     },
 
     {
-        id: 'sat-n-bk3', name: "Break / transit to DJs",
+        id: 'sat-n-bk3', name: "Dinner + transit to DJs",
         ...t('19:30', '20:00'), col: 'neon', type: 'break', location: "—",
-        notes: "30-min break / transit to Main Stage DJ venue. Gear swap for low-light DJ coverage. Flash off — available light only.",
-        quota: [{ label: 'Output', value: 'Transit + low-light gear setup' }]
+        notes: "30-min dinner and transit window before DJ sets. Grab food, then head to Main Stage DJ venue. Gear swap to low-light DJ setup — flash off, available light only.",
+        quota: [{ label: 'Output', value: 'Dinner + transit + low-light gear setup' }]
     },
 
     // ── DJ Sets — BOTH all night, alternating photo/video each 30-min slot ──
@@ -269,8 +269,8 @@ export const eventsDay2: GanttEvent[] = [
     {
         id: 'sat-j-01', name: "⭐ Fursuit Walk",
         ...t('10:00', '12:00'), col: 'jarrod', type: 'primary', location: "All Rooms / Beach",
-        notes: "HIGHEST PRIORITY Day 2 — Flowline full walk video, no stills. A7S III on Flycam Flowline: S-Log3, 4K25fps, ISO 400 outdoors (add ND if highlights clip on beach), Tamron 28mm wide. SteadyShot OFF for Flowline operation. Shinobi II for live framing. Look for: parade leading-line tracking from street level alongside the procession, wide beach establishing with full group visible, individual fursuit tracking as they pass camera, bystander reaction framed outside the parade. Record continuously — do not stop during the march.",
-        quota: [{ label: 'Min. Video', value: 'Full walk record + beach highlights reel' }, { label: 'Note', value: 'Video only — Neon handles all stills' }, { label: 'Recommended Gear', value: 'A7S III + Tamron 28-75mm f/2.8 @ 28mm on Flycam Flowline + ND filter (beach/outdoor)' }]
+        notes: "HIGHEST PRIORITY Day 2 — handheld full walk video, no stills. A7S III handheld, SteadyShot Active: S-Log3, 4K25fps, ISO 400 outdoors (add ND if highlights clip on beach), Tamron 28mm wide. Look for: parade leading-line tracking from street level alongside the procession, wide beach establishing with full group visible, individual fursuit tracking as they pass camera, bystander reaction framed outside the parade. Record continuously — do not stop during the march.",
+        quota: [{ label: 'Min. Video', value: 'Full walk record + beach highlights reel' }, { label: 'Note', value: 'Video only — Neon handles all stills' }, { label: 'Recommended Gear', value: 'A7S III + Tamron 28-75mm f/2.8 @ 28mm handheld (SteadyShot Active) + ND filter (beach/outdoor)' }]
     },
 
     {
@@ -334,6 +334,13 @@ export const eventsDay2: GanttEvent[] = [
         ...t('17:30', '19:00'), col: 'jarrod', type: 'primary', location: "Main Stage",
         notes: "KEY EVENT — full event video on tripod with dynamic framing to follow performers, no stills. A7S III: S-Log3, 4K25fps, ISO 1600, NEEWER 74\" tripod with smooth pan/tilt capability. SteadyShot OFF. RØDE VideoMic ProPlus: set -20dB for live stage performance, check pre-show audio levels. Shinobi II for framing confirmation. Record every performance continuously — do not stop between acts. Look for: track each performer smoothly, keep fully in-frame with headroom; pan/tilt to follow MC between acts; monitor audio peaks on Shinobi during loud musical numbers. Use fluid tripod movement to follow stage action.",
         quota: [{ label: 'Min. Video', value: 'Full event record' }, { label: 'Note', value: 'Video only — dynamic tripod following performers. Neon handles all stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + NEEWER 74" Pro Video Tripod + Atomos Shinobi II' }]
+    },
+
+    {
+        id: 'sat-j-dinner', name: "Dinner break",
+        ...t('19:00', '19:30'), col: 'jarrod', type: 'break', location: "—",
+        notes: "30-min dinner after Talent Show. Grab food before offload and DJ sets.",
+        quota: [{ label: 'Output', value: 'Food + rest' }]
     },
 
     {

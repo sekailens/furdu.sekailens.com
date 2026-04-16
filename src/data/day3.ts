@@ -58,8 +58,8 @@ export const eventsDay3: GanttEvent[] = [
     {
         id: 'sun-n-01', name: "⭐ Fursuit Games",
         ...t('10:00', '12:00'), col: 'neon', type: 'primary', location: "Main Stage",
-        notes: "HIGH PRIORITY — primary stills, Jarrod on Flowline video. R6 II: Tv 1/640s (lift to 1/1000s for fast game moments), ISO 1600–6400, f/4–5.6, Servo AF+Tracking, 12fps burst. Sigma 85mm for contestant action isolation; Sigma 18-35mm for crowd/stage wide establishing. Look for: peak mid-game action freeze (relay hand-off, physical challenge apex, tug-of-war strain), crowd cheering close-ups framed around competitors, team coordinating mid-game communication, elimination reaction (surprised/disappointed expression), winner celebration burst. Vary angles — stage-level for competitor perspective, audience-row for crowd-framed overhead look.",
-        quota: [{ label: 'Min. Photos', value: '150–210' }, { label: 'Note', value: 'Primary stills — Jarrod on Flowline video' }, { label: 'Shots', value: 'Mid-game action, crowd cheering, winners' }, { label: 'Recommended Gear', value: 'Sigma 85mm f/1.4 + Sigma 18-35mm f/1.8' }]
+        notes: "HIGH PRIORITY — primary stills, Jarrod on handheld video. R6 II: Tv 1/640s (lift to 1/1000s for fast game moments), ISO 1600–6400, f/4–5.6, Servo AF+Tracking, 12fps burst. Sigma 85mm for contestant action isolation; Sigma 18-35mm for crowd/stage wide establishing. Look for: peak mid-game action freeze (relay hand-off, physical challenge apex, tug-of-war strain), crowd cheering close-ups framed around competitors, team coordinating mid-game communication, elimination reaction (surprised/disappointed expression), winner celebration burst. Vary angles — stage-level for competitor perspective, audience-row for crowd-framed overhead look.",
+        quota: [{ label: 'Min. Photos', value: '150–210' }, { label: 'Note', value: 'Primary stills — Jarrod on handheld video' }, { label: 'Shots', value: 'Mid-game action, crowd cheering, winners' }, { label: 'Recommended Gear', value: 'Sigma 85mm f/1.4 + Sigma 18-35mm f/1.8' }]
     },
 
     {
@@ -79,8 +79,8 @@ export const eventsDay3: GanttEvent[] = [
     {
         id: 'sun-n-02', name: "⭐ Floor Wars",
         ...t('13:00', '14:30'), col: 'neon', type: 'primary', location: "Main Stage",
-        notes: "Primary stills — Jarrod on Flowline video. R6 II: Tv 1/640s (1/1000s for air-time), ISO 3200–6400, f/4–5.6, Servo AF+Tracking, 12fps burst. Canon 70-300mm from front audience for stage reach; Sigma 85mm from side for profile shots during solo battle. Look for: peak mid-move freeze (jump apex, floorwork extension, spin peak), battler stare-down eye-contact moments between rounds, judges' deliberation expressions, crowd's collective lean-in during close battles, elimination moment (exact frame of the judge's decision being shown), winner celebration with crowd.",
-        quota: [{ label: 'Min. Photos', value: '150–210' }, { label: 'Note', value: 'Primary stills — Jarrod on Flowline video' }, { label: 'Shots', value: 'Mid-move freeze, eliminations, winner reveal, crowd' }, { label: 'Recommended Gear', value: 'Canon 70-300mm + Sigma 85mm f/1.4' }]
+        notes: "Primary stills — Jarrod on handheld video. R6 II: Tv 1/640s (1/1000s for air-time), ISO 3200–6400, f/4–5.6, Servo AF+Tracking, 12fps burst. Canon 70-300mm from front audience for stage reach; Sigma 85mm from side for profile shots during solo battle. Look for: peak mid-move freeze (jump apex, floorwork extension, spin peak), battler stare-down eye-contact moments between rounds, judges' deliberation expressions, crowd's collective lean-in during close battles, elimination moment (exact frame of the judge's decision being shown), winner celebration with crowd.",
+        quota: [{ label: 'Min. Photos', value: '150–210' }, { label: 'Note', value: 'Primary stills — Jarrod on handheld video' }, { label: 'Shots', value: 'Mid-move freeze, eliminations, winner reveal, crowd' }, { label: 'Recommended Gear', value: 'Canon 70-300mm + Sigma 85mm f/1.4' }]
     },
 
     {
@@ -133,10 +133,10 @@ export const eventsDay3: GanttEvent[] = [
     },
 
     {
-        id: 'sun-n-bk2', name: "Break / transit to Dead Dog Dance",
+        id: 'sun-n-bk2', name: "Dinner + transit to Dead Dog Dance",
         ...t('19:30', '20:00'), col: 'neon', type: 'break', location: "—",
-        notes: "30-min transit to Main Stage DJ venue for Dead Dog Dance. Gear swap to low-light DJ setup — flash off, high-ISO night mode. NOTE: Pups of Furdu (8–9:30 PM, Panel Room 2) runs parallel; Neon fully committed to Main Stage.",
-        quota: [{ label: 'Output', value: 'Transit + low-light DJ gear setup' }]
+        notes: "30-min dinner and transit window before Dead Dog Dance. Grab food, then head to Main Stage DJ venue. Gear swap to low-light DJ setup — flash off, high-ISO night mode. NOTE: Pups of Furdu (8–9:30 PM, Panel Room 2) runs parallel; Neon fully committed to Main Stage.",
+        quota: [{ label: 'Output', value: 'Dinner + transit + low-light DJ gear setup' }]
     },
 
     // ── DJ Sets — Dead Dog Dance — BOTH all night ─────────────────────
@@ -208,8 +208,8 @@ export const eventsDay3: GanttEvent[] = [
     {
         id: 'sun-j-01', name: "⭐ Fursuit Games",
         ...t('10:00', '12:00'), col: 'jarrod', type: 'primary', location: "Main Stage",
-        notes: "HIGH PRIORITY — Flowline full event video, no stills. A7S III on Flycam Flowline: S-Log3, 4K25fps, ISO 1600–3200, Tamron 28mm wide. SteadyShot OFF for Flowline operation. Shinobi II for live framing. Look for: entrance tracking shot from stage wings to event centre, each game round fully in frame from start to finish, Flowline sweep between team zones to show full game layout, crowd reaction visible from stage-adjacent position. Record continuously through all rounds — do not cut mid-game.",
-        quota: [{ label: 'Min. Video', value: 'Full event record' }, { label: 'Note', value: 'Video only — Neon handles all stills' }, { label: 'Recommended Gear', value: 'A7S III + Tamron 28-75mm f/2.8 @ 28mm on Flycam Flowline' }]
+        notes: "HIGH PRIORITY — handheld full event video, no stills. A7S III handheld, SteadyShot Active: S-Log3, 4K25fps, ISO 1600–3200, Tamron 28mm wide. Shinobi II for live framing. Look for: entrance tracking shot from stage wings to event centre, each game round fully in frame from start to finish, smooth handheld pan between team zones to show full game layout, crowd reaction visible from stage-adjacent position. Record continuously through all rounds — do not cut mid-game.",
+        quota: [{ label: 'Min. Video', value: 'Full event record' }, { label: 'Note', value: 'Video only — Neon handles all stills' }, { label: 'Recommended Gear', value: 'A7S III + Tamron 28-75mm f/2.8 @ 28mm handheld (SteadyShot Active)' }]
     },
 
     {
@@ -229,8 +229,8 @@ export const eventsDay3: GanttEvent[] = [
     {
         id: 'sun-j-02', name: "⭐ Floor Wars",
         ...t('13:00', '14:30'), col: 'jarrod', type: 'primary', location: "Main Stage",
-        notes: "Full event video — Flowline throughout, no stills. A7S III on Flycam Flowline: S-Log3, 4K25fps, ISO 1600–3200, Tamron 28mm wide. SteadyShot OFF. RØDE VideoMic ProPlus: -20dB pad for crowd/commentary commentary, high-pass on. Shinobi II for exposure and framing. Look for: entrance tracking pull through the battle corridor to centre stage, each battle round in-frame from first move to judge decision, full Flowline sweep capturing both battlers in a single frame during peaks, crowd-reaction framing from stage-adjacent. Record continuously through every round — do not cut.",
-        quota: [{ label: 'Min. Video', value: 'Full event record' }, { label: 'Note', value: 'Video only — Neon handles all stills' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + Tamron 28-75mm f/2.8 @ 28mm on Flycam Flowline + Atomos Shinobi II' }]
+        notes: "Full event video — handheld throughout, no stills. A7S III handheld, SteadyShot Active: S-Log3, 4K25fps, ISO 1600–3200, Tamron 28mm wide. RØDE VideoMic ProPlus: -20dB pad for crowd/commentary, high-pass on. Shinobi II for exposure and framing. Look for: entrance tracking pull through the battle corridor to centre stage, each battle round in-frame from first move to judge decision, smooth handheld pan capturing both battlers in a single frame during peaks, crowd-reaction framing from stage-adjacent. Record continuously through every round — do not cut.",
+        quota: [{ label: 'Min. Video', value: 'Full event record' }, { label: 'Note', value: 'Video only — Neon handles all stills' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + Tamron 28-75mm f/2.8 @ 28mm handheld (SteadyShot Active) + Atomos Shinobi II' }]
     },
 
     {
@@ -273,6 +273,13 @@ export const eventsDay3: GanttEvent[] = [
         ...t('17:00', '19:00'), col: 'jarrod', type: 'primary', location: "Main Stage",
         notes: "HIGHEST PRIORITY of the convention — tripod with dynamic framing to follow each speaker through ceremony, no stills. A7S III: S-Log3, 4K25fps, ISO 800–1600, Tamron ~35mm for stage-width framing. NEEWER 74\" tripod with smooth pan/tilt capability. RØDE VideoMic ProPlus: -20dB pad (stage audio can spike sharply with applause), high-pass on, check levels on Shinobi before doors open. Record continuously through all speakers, auction rounds, and the charity reveal — do not cut between segments. Look for: track each speaker smoothly as they move, pan/tilt before any visual prop or screen reveal appears, maintain headroom on each speaker, monitor Shinobi audio waveform through loud applause peaks.",
         quota: [{ label: 'Min. Video', value: 'Full ceremony record' }, { label: 'Note', value: 'Video only — dynamic tripod following speakers. Neon is sole stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'A7S III + NEEWER 74" Pro Video Tripod + Tamron 28-75mm + Atomos Shinobi II' }]
+    },
+
+    {
+        id: 'sun-j-dinner', name: "Dinner break",
+        ...t('19:00', '19:30'), col: 'jarrod', type: 'break', location: "—",
+        notes: "30-min dinner after Closing Ceremony. Good time to eat before Dead Dog Dance kicks off at 8 PM.",
+        quota: [{ label: 'Output', value: 'Food + rest' }]
     },
 
     {

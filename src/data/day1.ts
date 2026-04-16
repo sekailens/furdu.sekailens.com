@@ -128,8 +128,8 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-n-07', name: "⭐ Dance Competition",
         ...t('14:30', '16:30'), col: 'neon', type: 'primary', location: "Main Stage",
-        notes: "Primary stills — Jarrod on Flowline for full video. R6 II: Tv 1/640s (raise to 1/1000 for air-time), ISO 1600–6400, burst max. Subject tracking on. Canon 70-300mm from front audience — position early. Look for: peak mid-movement freeze (jump apex, spin peak, extension), winning routine reaction moment, judges' expressions, wide crowd energy (swap to 18-35mm). Prioritise the winner reveal sequence. NOTE: Creating Story Ideas (2:30–3:30) blocked — unavoidable.",
-        quota: [{ label: 'Min. Photos', value: '150–210' }, { label: 'Note', value: 'Primary stills — Jarrod on Flowline video' }, { label: 'Shutter', value: '1/640–1/1000 to freeze motion' }, { label: 'Recommended Gear', value: 'Canon 70-300mm' }]
+        notes: "Primary stills — Jarrod on handheld video. R6 II: Tv 1/640s (raise to 1/1000 for air-time), ISO 1600–6400, burst max. Subject tracking on. Canon 70-300mm from front audience — position early. Look for: peak mid-movement freeze (jump apex, spin peak, extension), winning routine reaction moment, judges' expressions, wide crowd energy (swap to 18-35mm). Prioritise the winner reveal sequence. NOTE: Creating Story Ideas (2:30–3:30) blocked — unavoidable.",
+        quota: [{ label: 'Min. Photos', value: '150–210' }, { label: 'Note', value: 'Primary stills — Jarrod on handheld video' }, { label: 'Shutter', value: '1/640–1/1000 to freeze motion' }, { label: 'Recommended Gear', value: 'Canon 70-300mm' }]
     },
 
     // ── Post-Dance offload + pre-ceremony ────────────────────────────
@@ -154,6 +154,13 @@ export const eventsDay1: GanttEvent[] = [
         ...t('17:00', '18:00'), col: 'neon', type: 'primary', location: "Main Stage",
         notes: "HIGHEST PRIORITY — sole stills photographer. R6 II: Av f/4, ISO 3200–6400, no flash during speeches, IBIS active. Canon 70-300mm for individual speaker portraits; Sigma 18-35mm for wide crowd reactions. Look for: each board speaker framed at podium, theme reveal visual moment (burst on the reveal), wide crowd reaction shot, emotional audience close-ups. Burst at each applause break — reframe between speakers only, don't shift position during speech.",
         quota: [{ label: 'Min. Photos', value: '150–200' }, { label: 'Note', value: 'Sole stills photographer' }, { label: 'Shots', value: 'Speakers, theme reveal, crowd' }, { label: 'Recommended Gear', value: 'Canon 70-300mm + Sigma 18-35mm f/1.8' }]
+    },
+
+    {
+        id: 'fri-n-dinner', name: "Dinner break",
+        ...t('18:00', '18:30'), col: 'neon', type: 'break', location: "—",
+        notes: "30-min dinner after Opening Words. Grab food before offload and evening events.",
+        quota: [{ label: 'Output', value: 'Food + rest' }]
     },
 
     {
@@ -280,8 +287,8 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-j-dd3', name: "Dealers Den Open — Rush",
         ...t('11:00', '11:30'), col: 'jarrod', type: 'neon', location: "Dealer's Den",
-        notes: "Peak rush — hero crowd shot of the Den sequence. A7S III on Flycam Flowline: S-Cinetone, 4K25fps, ISO 1600–3200, Tamron 28mm wide. Execute a sweeping aisle tracking shot as the primary Den B-roll anchor clip. Between Flowline passes, burst stills handheld at 75mm for first-purchase reaction candids.",
-        quota: [{ label: 'Min. Photos', value: '30–45' }, { label: 'Min. Video', value: '~270 sec keeper clip' }, { label: 'Recommended Gear', value: 'Tamron 28-75mm f/2.8 @ 28mm on Flycam Flowline' }]
+        notes: "Peak rush — hero crowd shot of the Den sequence. A7S III handheld, SteadyShot Active: S-Cinetone, 4K25fps, ISO 1600–3200, Tamron 28mm wide. Execute a sweeping aisle tracking shot as the primary Den B-roll anchor clip. Between video passes, burst stills handheld at 75mm for first-purchase reaction candids.",
+        quota: [{ label: 'Min. Photos', value: '30–45' }, { label: 'Min. Video', value: '~270 sec keeper clip' }, { label: 'Recommended Gear', value: 'Tamron 28-75mm f/2.8 @ 28mm handheld (SteadyShot Active)' }]
     },
 
     // ── Lunch ────────────────────────────────────────────────────────
@@ -317,7 +324,7 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-j-gh', name: "Guitar Hero Tutorial (pass)",
         ...t('14:00', '14:15'), col: 'jarrod', type: 'neon', location: "Games Room",
-        notes: "15-min gap filler after My First Furcon. A7S III: S-Cinetone, ISO 800–1600, 4K25fps, Tamron 28-75mm. Look for: player-intensity close-ups (hands on controller, screen-face reaction), group spectating energy, guitar peripheral in frame. 90–180 sec B-roll + 15–24 stills. Out by 2:15 PM for Dance Comp Flowline setup.",
+        notes: "15-min gap filler after My First Furcon. A7S III: S-Cinetone, ISO 800–1600, 4K25fps, Tamron 28-75mm. Look for: player-intensity close-ups (hands on controller, screen-face reaction), group spectating energy, guitar peripheral in frame. 90–180 sec B-roll + 15–24 stills. Out by 2:15 PM for Dance Comp setup.",
         quota: [{ label: 'Min. Photos', value: '15–24' }, { label: 'Min. Video', value: '90–180 sec atmosphere clip' }, { label: 'Duration', value: '15 min pass' }]
     },
 
@@ -326,8 +333,8 @@ export const eventsDay1: GanttEvent[] = [
     {
         id: 'fri-j-07', name: "⭐ Dance Competition",
         ...t('14:30', '16:30'), col: 'jarrod', type: 'primary', location: "Main Stage",
-        notes: "FULL VIDEO RECORD — Flowline throughout, no stills. A7S III on Flycam Flowline: S-Log3, 4K25fps, ISO 800–3200, Tamron 28mm wide end. Shinobi II for live framing confirmation. Look for: entrance tracking shot from stage wings to centre, full routine in-frame wide from start to finish, choreography peaks (lifts, floor sections, spins). Capture each routine continuously — do not cut mid-performance. Neon covers all stills.",
-        quota: [{ label: 'Min. Video', value: 'Full event record' }, { label: 'Note', value: 'Video only — Neon handles all stills' }, { label: 'Recommended Gear', value: 'Tamron 28-75mm f/2.8 @ 28mm on Flycam Flowline + Atomos Shinobi II' }]
+        notes: "FULL VIDEO RECORD — handheld throughout, no stills. A7S III handheld, SteadyShot Active: S-Log3, 4K25fps, ISO 800–3200, Tamron 28mm wide end. Shinobi II for live framing confirmation. Look for: entrance tracking shot from stage wings to centre, full routine in-frame wide from start to finish, choreography peaks (lifts, floor sections, spins). Capture each routine continuously — do not cut mid-performance. Neon covers all stills.",
+        quota: [{ label: 'Min. Video', value: 'Full event record' }, { label: 'Note', value: 'Video only — Neon handles all stills' }, { label: 'Recommended Gear', value: 'Tamron 28-75mm f/2.8 @ 28mm handheld (SteadyShot Active) + Atomos Shinobi II' }]
     },
 
     // ── Post-Dance offload ────────────────────────────────────────────
@@ -352,6 +359,13 @@ export const eventsDay1: GanttEvent[] = [
         ...t('17:00', '18:00'), col: 'jarrod', type: 'primary', location: "Main Stage",
         notes: "HIGHEST PRIORITY — tripod with dynamic framing to follow each speaker, full ceremony, no stills. A7S III: S-Log3, 4K25fps, ISO 800, Tamron 28-75mm at ~35mm for stage-width framing. NEEWER 74\" tripod with smooth pan/tilt capability. RØDE VideoMic ProPlus: check audio levels pre-event (–12dB peaks), high-pass filter on for indoor reverb. Shinobi II for exposure and framing. Look for: track each speaker smoothly as they move on stage, adjust framing before any reveal prop or screen appears, maintain head room. Record continuously through transitions and applause — do not stop between speakers. Pan/tilt to follow speaker movement with fluid, professional motion.",
         quota: [{ label: 'Min. Video', value: 'Full ceremony record' }, { label: 'Note', value: 'Video only — dynamic tripod following speakers. Neon is sole stills.' }, { label: 'Audio', value: 'RØDE VideoMic ProPlus' }, { label: 'Recommended Gear', value: 'NEEWER 74" Pro Video Tripod + Tamron 28-75mm + Atomos Shinobi II' }]
+    },
+
+    {
+        id: 'fri-j-dinner', name: "Dinner break",
+        ...t('18:00', '18:30'), col: 'jarrod', type: 'break', location: "—",
+        notes: "30-min dinner after Opening Words. Grab food before offload and evening events.",
+        quota: [{ label: 'Output', value: 'Food + rest' }]
     },
 
     {
@@ -408,7 +422,7 @@ export const eventsDay1: GanttEvent[] = [
 
     {
         id: 'fri-j-dj8', name: "Diesel — closing photo + video",
-        ...t('23:30', '24:00'), col: 'jarrod', type: 'neon', location: "Main Stage",
+        ...t('23:00', '24:00'), col: 'jarrod', type: 'neon', location: "Main Stage",
         notes: "Electro 11:30–midnight — solo final coverage (Neon wrapped). A7S III: S-Cinetone, 4K25fps, ISO 12800–25600, f/2.8. Look for: crowd-together wide moment at 28mm, DJ acknowledgment of the crowd, end-of-night euphoria faces. Both stills and closing video. End on a strong wide frame that summarises Friday night energy.",
         quota: [{ label: 'Min. Photos', value: '24–36' }, { label: 'Min. Video', value: '6 min closing reel' }, { label: 'Note', value: 'Solo coverage — Neon wrapped' }]
     },
