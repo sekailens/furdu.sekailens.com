@@ -118,9 +118,17 @@ const offloadSun: OffloadWindow[] = [
         <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
         <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
       </svg>
-      <span class="font-semibold text-amber-300 text-sm">Guide updated 2026-04-16 16:53:05 AEST — read before Day 1</span>
+      <span class="font-semibold text-amber-300 text-sm">Guide updated 2026-04-16 — read before Day 1</span>
     </div>
     <ul class="space-y-1.5 text-sm text-amber-200/80">
+      <li class="flex items-start gap-2">
+        <span class="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-furdu-teal"></span>
+        <span><strong class="text-white">Dinner breaks added to schedule.</strong> All three days now include dedicated dinner windows. See the <a href="/schedule" class="text-furdu-teal hover:underline">Schedule</a> for exact times.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-furdu-teal"></span>
+        <span><strong class="text-white">Vertical social clips reassigned to Neon.</strong> Neon captures 9:16 clips at major events for same-day posting. See <a href="#deliverables" class="text-furdu-teal hover:underline">Deliverables</a>.</span>
+      </li>
       <li class="flex items-start gap-2">
         <span class="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-red-400"></span>
         <span><strong class="text-white">Flycam Flowline stabiliser is unavailable.</strong> All moving video events (Fursuit Walk, Dance Comp, Floor Wars, Fursuit Games) now use handheld with SteadyShot Active. Event notes on the <a href="/schedule" class="text-furdu-teal hover:underline">Schedule</a> have been updated.</span>
@@ -936,8 +944,8 @@ const offloadSun: OffloadWindow[] = [
 
     <!-- Vertical social media note -->
     <div class="card border-l-4 border-furdu-teal px-4 py-3 mb-4 text-sm space-y-1">
-      <p class="font-semibold text-white">Jarrod — capture vertical clips for social media</p>
-      <p class="text-furdu-muted">At each <strong class="text-white">major event</strong> (ceremonies, Fursuit Walk, DJ sets, Floor Wars, Talent Show), capture at least <strong class="text-white">1–2 short vertical (9:16) clips</strong> by rotating the A7S III to portrait orientation. Aim for 15–60 seconds each — crowd energy, a performer/DJ in action, or a key reaction moment. These go directly to Reo for same-day social posting and do not replace your primary horizontal coverage.</p>
+      <p class="font-semibold text-white">Neon — capture vertical clips for social media</p>
+      <p class="text-furdu-muted">At each <strong class="text-white">major event</strong> (ceremonies, Fursuit Walk, DJ sets, Floor Wars, Talent Show), capture at least <strong class="text-white">1–2 short vertical (9:16) clips</strong> by switching the R6 II to video and rotating to portrait orientation. Aim for 15–60 seconds each — crowd energy, a performer/DJ in action, or a key reaction moment. These go directly to Reo for same-day social posting and do not replace your primary stills coverage.</p>
     </div>
 
     <!-- Shot targets table -->
@@ -959,7 +967,7 @@ const offloadSun: OffloadWindow[] = [
             { type: "Dealers Den / Artists Alley — Day 1 full (3 sessions)", neon: '30–45 per session', jarrod: '24–36 per session', video: '~4–6 min walk-through reel (Day 1 only)' },
             { type: "Dealers Den / Artists Alley — repeat day pass", neon: '10–15 per pass', jarrod: '8–15 per pass', video: '~60 sec B-roll' },
             { type: 'Registration / pre-event assembly candids (per day)', neon: '45–60', jarrod: '30–45', video: '~6 min assembly B-roll' },
-            { type: 'Vertical social clips (per major event, Jarrod)', neon: '—', jarrod: '—', video: '1–2 clips × 15–60 sec, 9:16 portrait orientation' },
+            { type: 'Vertical social clips (per major event, Neon)', neon: '1–2 clips × 15–60 sec, 9:16', jarrod: '—', video: '—' },
             { type: '⭐ Overall con total — Neon', neon: '~2,300–3,600 RAW files', jarrod: '—', video: '—' },
             { type: '⭐ Overall con total — Jarrod', neon: '—', jarrod: '~700–1,200 RAW stills', video: '~12–18 hrs raw footage' },
           ] as { type: string; neon: string; jarrod: string; video: string }[]).map(r => (
@@ -1226,7 +1234,7 @@ const offloadSun: OffloadWindow[] = [
             },
             {
               term: 'Zephyr',
-              def: 'The designated on-site FurDU contact for the media team. For immediate concerns, questions about specific events, or anything requiring on-site escalation, report directly to Zephyr — in person or via Telegram. Most other FurDU staff and volunteers are not briefed on media operations.',
+              def: 'The FurDU Con Chair and contact for the media team. For immediate concerns, questions about specific events, or anything requiring on-site escalation, report directly to Zephyr — in person or via Telegram. Most other FurDU staff and volunteers are not briefed on media operations.',
             },
           ] as { term: string; def: string }[]).map(g => (
             <div class="card-raised rounded-lg p-3">
@@ -1251,6 +1259,23 @@ const offloadSun: OffloadWindow[] = [
     </h2>
 
     <div class="space-y-3">
+
+      <div class="card p-4">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="font-mono text-xs font-semibold text-furdu-teal bg-furdu-teal/10 border border-furdu-teal/30 rounded px-2 py-0.5">2026-04-16 · 18:16:05 AEST</span>
+          <span class="text-xs text-furdu-muted">Schedule + deliverables update</span>
+        </div>
+        <ul class="space-y-2 text-sm text-furdu-muted">
+          <li class="flex items-start gap-2">
+            <span class="mt-1 shrink-0 w-1.5 h-1.5 rounded-full bg-furdu-teal"></span>
+            <span><strong class="text-white">Dinner breaks added to all three days</strong> — Day 1 both shooters 6:00–6:30 PM; Day 2 Jarrod 7:00–7:30 PM; Day 3 Jarrod 7:00–7:30 PM. Neon’s Day 2 and Day 3 dinner windows are folded into the existing pre-DJ transit break.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1 shrink-0 w-1.5 h-1.5 rounded-full bg-furdu-teal"></span>
+            <span><strong class="text-white">Vertical social clips reassigned to Neon</strong> — Neon captures 1–2 vertical (9:16) clips per major event using the R6 II for same-day social posting. Deliverables table updated accordingly.</span>
+          </li>
+        </ul>
+      </div>
 
       <div class="card p-4">
         <div class="flex items-center gap-3 mb-3">
