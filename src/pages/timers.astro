@@ -1,0 +1,566 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { eventsDay1 } from '@/data/day1';
+import { eventsDay2 } from '@/data/day2';
+import { eventsDay3 } from '@/data/day3';
+import type { GanttEvent } from '@/lib/gantt';
+
+const pick = (e: GanttEvent) => ({
+  id: e.id, name: e.name, sh: e.sh, sm: e.sm, eh: e.eh, em: e.em,
+  col: e.col, type: e.type, location: e.location,
+});
+
+const daysJson = JSON.stringify([
+  eventsDay1.map(pick),
+  eventsDay2.map(pick),
+  eventsDay3.map(pick),
+]);
+---
+<Layout
+  title="Timers | FurDU Media Team Hub"
+  ogTitle="Event Timers | FurDU Media Team Hub"
+  ogDescription="Live countdown to next shoot and next offload for each photographer."
+>
+  <div class="w-full sm:max-w-[80vw] mx-auto px-3 sm:px-6 py-8">
+
+    <!-- Breadcrumb + Header -->
+    <div class="mb-6">
+      <div class="flex items-center gap-2 text-sm text-furdu-muted mb-2">
+        <a href="/" class="hover:text-furdu-teal transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white">Timers</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-white mb-1">Event Timers</h1>
+      <p class="text-furdu-muted text-sm">Live countdown to next shoot and next offload per photographer. Day auto-detected from AEST clock.</p>
+    </div>
+
+    <!-- ── Alpine root ─────────────────────────────────────────────────── -->
+    <div x-data="timers()">
+
+      <!-- Top bar: clock + day selector -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+
+        <!-- Live AEST clock -->
+        <div class="card px-4 py-2.5 inline-flex items-center gap-2 self-start">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" class="text-furdu-teal shrink-0" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+          <span class="font-mono text-sm font-semibold text-furdu-teal" x-text="clock">--:--:-- -- AEST</span>
+        </div>
+
+        <!-- Day tabs -->
+        <div class="flex gap-1.5">
+          <button
+            @click="dayIdx = 0"
+            :class="dayIdx === 0 ? 'bg-furdu-teal text-furdu-bg font-semibold' : 'bg-furdu-raised text-furdu-muted hover:text-white'"
+            class="px-3 py-1.5 rounded-lg text-sm transition-colors leading-tight text-center"
+          >
+            Day 1<br/><span class="text-[10px] opacity-70">Fri 17</span>
+          </button>
+          <button
+            @click="dayIdx = 1"
+            :class="dayIdx === 1 ? 'bg-furdu-teal text-furdu-bg font-semibold' : 'bg-furdu-raised text-furdu-muted hover:text-white'"
+            class="px-3 py-1.5 rounded-lg text-sm transition-colors leading-tight text-center"
+          >
+            Day 2<br/><span class="text-[10px] opacity-70">Sat 18</span>
+          </button>
+          <button
+            @click="dayIdx = 2"
+            :class="dayIdx === 2 ? 'bg-furdu-teal text-furdu-bg font-semibold' : 'bg-furdu-raised text-furdu-muted hover:text-white'"
+            class="px-3 py-1.5 rounded-lg text-sm transition-colors leading-tight text-center"
+          >
+            Day 3<br/><span class="text-[10px] opacity-70">Sun 19</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Photographer columns -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+        <!-- ── NEON ─────────────────────────────────────────────────────── -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-furdu-teal shrink-0"></span>
+            <h2 class="text-base font-bold text-white">Neon</h2>
+            <span class="badge-teal">Stills</span>
+          </div>
+
+          <!-- Current Shoot / No Shoot -->
+          <div class="card p-5" :class="neonCurrent ? 'border border-green-500/40 bg-green-900/10' : ''">
+            <div class="flex items-center gap-2 mb-4">
+              <template x-if="neonCurrent">
+                <span class="relative flex h-2.5 w-2.5 shrink-0">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400"></span>
+                </span>
+              </template>
+              <template x-if="!neonCurrent">
+                <span class="w-2.5 h-2.5 rounded-full bg-furdu-raised shrink-0"></span>
+              </template>
+              <span class="text-xs font-semibold uppercase tracking-wider"
+                    :class="neonCurrent ? 'text-green-400' : 'text-furdu-muted'"
+                    x-text="neonCurrent ? 'Shooting Now' : 'No Shoot'"></span>
+            </div>
+            <template x-if="neonCurrent">
+              <div>
+                <p class="font-semibold text-white text-sm leading-snug" x-text="neonCurrent.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-4" x-text="neonCurrent.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1 text-green-400"
+                   x-text="fmtCountdown(neonCurrent.endMs)"></p>
+                <p class="text-furdu-muted text-xs">time remaining</p>
+              </div>
+            </template>
+            <template x-if="!neonCurrent">
+              <p class="text-furdu-muted text-sm">Not currently shooting.</p>
+            </template>
+          </div>
+
+          <!-- Next Shoot -->
+          <div class="card p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" class="text-furdu-teal shrink-0" viewBox="0 0 24 24">
+                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                <circle cx="12" cy="13" r="3"/>
+              </svg>
+              <span class="text-xs font-semibold uppercase tracking-wider text-furdu-teal">Next Shoot</span>
+            </div>
+            <template x-if="neonEvent">
+              <div>
+                <p class="font-semibold text-white text-sm leading-snug" x-text="neonEvent.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-4" x-text="neonEvent.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1 text-furdu-teal"
+                   x-text="fmtCountdown(neonEvent.startMs)"></p>
+                <p class="text-furdu-muted text-xs">until start</p>
+              </div>
+            </template>
+            <template x-if="!neonEvent">
+              <p class="text-furdu-muted text-sm italic">No more shoots today.</p>
+            </template>
+          </div>
+
+          <!-- Next Offload -->
+          <div class="card p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round"
+                   :class="neonOffload && neonOffload.inProgress ? 'text-amber-300' : 'text-amber-400'"
+                   class="shrink-0" viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              <span class="text-xs font-semibold uppercase tracking-wider"
+                    :class="neonOffload && neonOffload.inProgress ? 'text-amber-300' : 'text-amber-400'"
+                    x-text="neonOffload && neonOffload.inProgress ? '● Offloading Now' : 'Next Offload'"></span>
+            </div>
+            <template x-if="neonOffload">
+              <div>
+                <p class="font-semibold text-white text-sm leading-snug" x-text="neonOffload.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-4" x-text="neonOffload.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1"
+                   :class="neonOffload.inProgress ? 'text-amber-300' : 'text-amber-400'"
+                   x-text="fmtCountdown(neonOffload.inProgress ? neonOffload.endMs : neonOffload.startMs)"></p>
+                <p class="text-furdu-muted text-xs" x-text="neonOffload.inProgress ? 'time remaining' : 'until offload'"></p>
+              </div>
+            </template>
+            <template x-if="!neonOffload">
+              <p class="text-furdu-muted text-sm italic">No more offloads today.</p>
+            </template>
+          </div>
+
+          <!-- Break -->
+          <div class="card p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   :class="neonBreakCurrent ? 'text-sky-300' : 'text-sky-400'"
+                   class="shrink-0" viewBox="0 0 24 24">
+                <rect x="6" y="4" width="4" height="16" rx="1"/>
+                <rect x="14" y="4" width="4" height="16" rx="1"/>
+              </svg>
+              <span class="text-xs font-semibold uppercase tracking-wider"
+                    :class="neonBreakCurrent ? 'text-sky-300' : 'text-sky-400'"
+                    x-text="neonBreakCurrent ? '● On Break' : 'Break'"></span>
+            </div>
+
+            <!-- Current break -->
+            <template x-if="neonBreakCurrent">
+              <div :class="neonBreakNext ? 'mb-4' : ''">
+                <p class="font-semibold text-white text-sm leading-snug" x-text="neonBreakCurrent.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-3" x-text="neonBreakCurrent.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1 text-sky-300"
+                   x-text="fmtCountdown(neonBreakCurrent.endMs)"></p>
+                <p class="text-furdu-muted text-xs">time remaining</p>
+              </div>
+            </template>
+
+            <!-- Divider when both sections present -->
+            <template x-if="neonBreakCurrent && neonBreakNext">
+              <hr class="border-furdu-border my-4">
+            </template>
+
+            <!-- Next break -->
+            <template x-if="neonBreakNext">
+              <div>
+                <p class="text-xs text-furdu-muted uppercase tracking-wider font-semibold mb-2">Next Break</p>
+                <p class="font-semibold text-white text-sm leading-snug" x-text="neonBreakNext.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-3" x-text="neonBreakNext.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1 text-sky-400"
+                   x-text="fmtCountdown(neonBreakNext.startMs)"></p>
+                <p class="text-furdu-muted text-xs">until break</p>
+              </div>
+            </template>
+
+            <template x-if="!neonBreakCurrent && !neonBreakNext">
+              <p class="text-furdu-muted text-sm italic">No more breaks today.</p>
+            </template>
+          </div>
+        </div>
+
+        <!-- ── JARROD ───────────────────────────────────────────────────── -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-violet-400 shrink-0"></span>
+            <h2 class="text-base font-bold text-white">Jarrod</h2>
+            <span class="badge-violet">Photo + Video</span>
+          </div>
+
+          <!-- Current Shoot / No Shoot -->
+          <div class="card p-5" :class="jarrodCurrent ? 'border border-green-500/40 bg-green-900/10' : ''">
+            <div class="flex items-center gap-2 mb-4">
+              <template x-if="jarrodCurrent">
+                <span class="relative flex h-2.5 w-2.5 shrink-0">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400"></span>
+                </span>
+              </template>
+              <template x-if="!jarrodCurrent">
+                <span class="w-2.5 h-2.5 rounded-full bg-furdu-raised shrink-0"></span>
+              </template>
+              <span class="text-xs font-semibold uppercase tracking-wider"
+                    :class="jarrodCurrent ? 'text-green-400' : 'text-furdu-muted'"
+                    x-text="jarrodCurrent ? 'Shooting Now' : 'No Shoot'"></span>
+            </div>
+            <template x-if="jarrodCurrent">
+              <div>
+                <p class="font-semibold text-white text-sm leading-snug" x-text="jarrodCurrent.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-4" x-text="jarrodCurrent.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1 text-green-400"
+                   x-text="fmtCountdown(jarrodCurrent.endMs)"></p>
+                <p class="text-furdu-muted text-xs">time remaining</p>
+              </div>
+            </template>
+            <template x-if="!jarrodCurrent">
+              <p class="text-furdu-muted text-sm">Not currently shooting.</p>
+            </template>
+          </div>
+
+          <!-- Next Shoot -->
+          <div class="card p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" class="text-violet-400 shrink-0" viewBox="0 0 24 24">
+                <path d="m22 8-6 4 6 4V8z"/>
+                <rect width="14" height="12" x="2" y="6" rx="2" ry="2"/>
+              </svg>
+              <span class="text-xs font-semibold uppercase tracking-wider text-violet-400">Next Shoot</span>
+            </div>
+            <template x-if="jarrodEvent">
+              <div>
+                <p class="font-semibold text-white text-sm leading-snug" x-text="jarrodEvent.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-4" x-text="jarrodEvent.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1 text-violet-400"
+                   x-text="fmtCountdown(jarrodEvent.startMs)"></p>
+                <p class="text-furdu-muted text-xs">until start</p>
+              </div>
+            </template>
+            <template x-if="!jarrodEvent">
+              <p class="text-furdu-muted text-sm italic">No more shoots today.</p>
+            </template>
+          </div>
+
+          <!-- Next Offload -->
+          <div class="card p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round"
+                   :class="jarrodOffload && jarrodOffload.inProgress ? 'text-amber-300' : 'text-amber-400'"
+                   class="shrink-0" viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              <span class="text-xs font-semibold uppercase tracking-wider"
+                    :class="jarrodOffload && jarrodOffload.inProgress ? 'text-amber-300' : 'text-amber-400'"
+                    x-text="jarrodOffload && jarrodOffload.inProgress ? '● Offloading Now' : 'Next Offload'"></span>
+            </div>
+            <template x-if="jarrodOffload">
+              <div>
+                <p class="font-semibold text-white text-sm leading-snug" x-text="jarrodOffload.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-4" x-text="jarrodOffload.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1"
+                   :class="jarrodOffload.inProgress ? 'text-amber-300' : 'text-amber-400'"
+                   x-text="fmtCountdown(jarrodOffload.inProgress ? jarrodOffload.endMs : jarrodOffload.startMs)"></p>
+                <p class="text-furdu-muted text-xs" x-text="jarrodOffload.inProgress ? 'time remaining' : 'until offload'"></p>
+              </div>
+            </template>
+            <template x-if="!jarrodOffload">
+              <p class="text-furdu-muted text-sm italic">No more offloads today.</p>
+            </template>
+          </div>
+
+          <!-- Break -->
+          <div class="card p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   :class="jarrodBreakCurrent ? 'text-sky-300' : 'text-sky-400'"
+                   class="shrink-0" viewBox="0 0 24 24">
+                <rect x="6" y="4" width="4" height="16" rx="1"/>
+                <rect x="14" y="4" width="4" height="16" rx="1"/>
+              </svg>
+              <span class="text-xs font-semibold uppercase tracking-wider"
+                    :class="jarrodBreakCurrent ? 'text-sky-300' : 'text-sky-400'"
+                    x-text="jarrodBreakCurrent ? '● On Break' : 'Break'"></span>
+            </div>
+
+            <!-- Current break -->
+            <template x-if="jarrodBreakCurrent">
+              <div :class="jarrodBreakNext ? 'mb-4' : ''">
+                <p class="font-semibold text-white text-sm leading-snug" x-text="jarrodBreakCurrent.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-3" x-text="jarrodBreakCurrent.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1 text-sky-300"
+                   x-text="fmtCountdown(jarrodBreakCurrent.endMs)"></p>
+                <p class="text-furdu-muted text-xs">time remaining</p>
+              </div>
+            </template>
+
+            <!-- Divider when both sections present -->
+            <template x-if="jarrodBreakCurrent && jarrodBreakNext">
+              <hr class="border-furdu-border my-4">
+            </template>
+
+            <!-- Next break -->
+            <template x-if="jarrodBreakNext">
+              <div>
+                <p class="text-xs text-furdu-muted uppercase tracking-wider font-semibold mb-2">Next Break</p>
+                <p class="font-semibold text-white text-sm leading-snug" x-text="jarrodBreakNext.name"></p>
+                <p class="text-furdu-muted text-xs mt-0.5 mb-3" x-text="jarrodBreakNext.timeLabel"></p>
+                <p class="font-mono text-4xl font-bold tabular-nums tracking-wider leading-none mb-1 text-sky-400"
+                   x-text="fmtCountdown(jarrodBreakNext.startMs)"></p>
+                <p class="text-furdu-muted text-xs">until break</p>
+              </div>
+            </template>
+
+            <template x-if="!jarrodBreakCurrent && !jarrodBreakNext">
+              <p class="text-furdu-muted text-sm italic">No more breaks today.</p>
+            </template>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end Alpine root -->
+  </div>
+
+  <script is:inline define:vars={{ daysJson }}>
+    document.addEventListener('alpine:init', function () {
+      Alpine.data('timers', function () {
+        return {
+          days: JSON.parse(daysJson),
+          offset: 0,
+          dayIdx: 0,
+          clock: '--:--:-- -- AEST',
+          neonCurrent:      null,
+          jarrodCurrent:    null,
+          neonEvent:        null,
+          jarrodEvent:      null,
+          neonOffload:      null,
+          jarrodOffload:    null,
+          neonBreakCurrent:    null,
+          neonBreakNext:       null,
+          jarrodBreakCurrent:  null,
+          jarrodBreakNext:     null,
+
+          // Midnight AEST for each con day (UTC epoch ms)
+          DAY_STARTS: [
+            Date.UTC(2026, 3, 17) - 10 * 3600000, // Fri 17 Apr 00:00 AEST
+            Date.UTC(2026, 3, 18) - 10 * 3600000, // Sat 18 Apr 00:00 AEST
+            Date.UTC(2026, 3, 19) - 10 * 3600000, // Sun 19 Apr 00:00 AEST
+          ],
+
+          init: function () {
+            var self = this;
+            var isDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+            function startTicking() {
+              self.tick();
+              setInterval(function () { self.tick(); }, 1000);
+            }
+
+            if (isDev) { startTicking(); return; }
+
+            var t0 = Date.now();
+            fetch('/api/time')
+              .then(function (r) { return r.json(); })
+              .then(function (data) {
+                self.offset = data.epoch - Math.round((t0 + Date.now()) / 2);
+              })
+              .catch(function () {})
+              .finally(startTicking);
+          },
+
+          serverNow: function () {
+            return Date.now() + this.offset;
+          },
+
+          detectDay: function () {
+            var now = this.serverNow();
+            var aest = new Date(now + 10 * 3600000);
+            var m = aest.getUTCMonth();
+            var d = aest.getUTCDate();
+            if (m === 3 && d === 17) { this.dayIdx = 0; return; }
+            if (m === 3 && d === 18) { this.dayIdx = 1; return; }
+            if (m === 3 && d === 19) { this.dayIdx = 2; return; }
+            // Outside con dates: clamp to first/last day
+            this.dayIdx = now < this.DAY_STARTS[0] ? 0 : 2;
+          },
+
+          tick: function () {
+            var now = this.serverNow();
+
+            // Update live clock
+            var aest = new Date(now + 10 * 3600000);
+            var pad  = function (n) { return String(n).padStart(2, '0'); };
+            var hh   = aest.getUTCHours();
+            var mm   = aest.getUTCMinutes();
+            var ss   = aest.getUTCSeconds();
+            var h12  = hh % 12 || 12;
+            var ampm = hh < 12 ? 'AM' : 'PM';
+            this.clock = h12 + ':' + pad(mm) + ':' + pad(ss) + ' ' + ampm + ' AEST';
+
+            // Re-detect day (auto-switches at midnight)
+            this.detectDay();
+
+            // Compute current and next events
+            this.neonCurrent   = this.getCurrent('neon',   now);
+            this.jarrodCurrent = this.getCurrent('jarrod', now);
+            this.neonEvent     = this.getNext('neon',   now, false);
+            this.jarrodEvent   = this.getNext('jarrod', now, false);
+            this.neonOffload   = this.getNext('neon',   now, true);
+            this.jarrodOffload = this.getNext('jarrod', now, true);
+            var neonBreak      = this.getBreakInfo('neon',   now);
+            var jarrodBreak    = this.getBreakInfo('jarrod', now);
+            this.neonBreakCurrent   = neonBreak.current;
+            this.neonBreakNext      = neonBreak.next;
+            this.jarrodBreakCurrent = jarrodBreak.current;
+            this.jarrodBreakNext    = jarrodBreak.next;
+          },
+
+          getBreakInfo: function (col, now) {
+            var dayStart = this.DAY_STARTS[this.dayIdx];
+            var pad = function (n) { return String(n).padStart(2, '0'); };
+            function fmtH(h, m) {
+              var hNorm = h % 24, h12 = hNorm % 12 || 12, ampm = hNorm < 12 ? 'AM' : 'PM';
+              return h12 + ':' + pad(m) + ' ' + ampm;
+            }
+            var breaks = this.days[this.dayIdx]
+              .filter(function (e) { return e.col === col && e.type === 'break'; })
+              .sort(function (a, b) { return (a.sh * 60 + a.sm) - (b.sh * 60 + b.sm); });
+            var current = null, next = null;
+            for (var i = 0; i < breaks.length; i++) {
+              var ev = breaks[i];
+              var startMs = dayStart + (ev.sh * 60 + ev.sm) * 60000;
+              var endMs   = dayStart + (ev.eh * 60 + ev.em) * 60000;
+              var timeLabel = fmtH(ev.sh, ev.sm) + ' → ' + fmtH(ev.eh, ev.em);
+              if (startMs <= now && endMs > now) {
+                current = Object.assign({}, ev, { startMs: startMs, endMs: endMs, timeLabel: timeLabel });
+              } else if (startMs > now && !next) {
+                next = Object.assign({}, ev, { startMs: startMs, endMs: endMs, timeLabel: timeLabel });
+              }
+            }
+            return { current: current, next: next };
+          },
+
+          getCurrent: function (col, now) {
+            var dayStart = this.DAY_STARTS[this.dayIdx];
+            var pad = function (n) { return String(n).padStart(2, '0'); };
+            function fmtH(h, m) {
+              var hNorm = h % 24, h12 = hNorm % 12 || 12, ampm = hNorm < 12 ? 'AM' : 'PM';
+              return h12 + ':' + pad(m) + ' ' + ampm;
+            }
+            var events = this.days[this.dayIdx].filter(function (e) {
+              return e.col === col && e.type !== 'offload' && e.type !== 'break';
+            });
+            for (var i = 0; i < events.length; i++) {
+              var ev = events[i];
+              var startMs = dayStart + (ev.sh * 60 + ev.sm) * 60000;
+              var endMs   = dayStart + (ev.eh * 60 + ev.em) * 60000;
+              if (startMs <= now && endMs > now) {
+                return Object.assign({}, ev, {
+                  startMs: startMs,
+                  endMs:   endMs,
+                  timeLabel: fmtH(ev.sh, ev.sm) + ' → ' + fmtH(ev.eh, ev.em) + ' · ' + ev.location,
+                });
+              }
+            }
+            return null;
+          },
+
+          getNext: function (col, now, offloadOnly) {
+            var dayStart = this.DAY_STARTS[this.dayIdx];
+            var pad = function (n) { return String(n).padStart(2, '0'); };
+
+            function fmtH(h, m) {
+              var hNorm = h % 24;
+              var h12   = hNorm % 12 || 12;
+              var ampm  = hNorm < 12 ? 'AM' : 'PM';
+              return h12 + ':' + pad(m) + ' ' + ampm;
+            }
+
+            var events = this.days[this.dayIdx]
+              .filter(function (e) { return e.col === col; })
+              .filter(function (e) {
+                return offloadOnly
+                  ? e.type === 'offload'
+                  : (e.type !== 'offload' && e.type !== 'break');
+              })
+              .sort(function (a, b) { return (a.sh * 60 + a.sm) - (b.sh * 60 + b.sm); });
+
+            for (var i = 0; i < events.length; i++) {
+              var ev      = events[i];
+              var startMs = dayStart + (ev.sh * 60 + ev.sm) * 60000;
+              var endMs   = dayStart + (ev.eh * 60 + ev.em) * 60000;
+
+              if (offloadOnly) {
+                // For offloads keep existing in-progress+upcoming behaviour
+                if (endMs > now) {
+                  var inProgress = startMs <= now;
+                  var timeLabel  = fmtH(ev.sh, ev.sm) + ' → ' + fmtH(ev.eh, ev.em) + ' · ' + ev.location;
+                  return Object.assign({}, ev, { startMs, endMs, inProgress, timeLabel });
+                }
+              } else {
+                // For shoots only return STRICTLY FUTURE events
+                if (startMs > now) {
+                  var timeLabel = fmtH(ev.sh, ev.sm) + ' → ' + fmtH(ev.eh, ev.em) + ' · ' + ev.location;
+                  return Object.assign({}, ev, { startMs, endMs, inProgress: false, timeLabel });
+                }
+              }
+            }
+            return null;
+          },
+
+          fmtCountdown: function (targetMs) {
+            var diff = Math.max(targetMs - this.serverNow(), 0);
+            var h    = Math.floor(diff / 3600000);
+            var m    = Math.floor((diff % 3600000) / 60000);
+            var s    = Math.floor((diff % 60000) / 1000);
+            var pad  = function (n) { return String(n).padStart(2, '0'); };
+            return pad(h) + ':' + pad(m) + ':' + pad(s);
+          },
+        };
+      });
+    });
+  </script>
+</Layout>
